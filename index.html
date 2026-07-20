@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AccesoQR - Control de Acceso Profesional para Eventos</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Iconos Tabler -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <i class="ti ti-qrcode-scanner"></i> Acceso<span>QR</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#como-funciona">Cómo Funciona</a></li>
+                <li><a href="#beneficios">Beneficios</a></li>
+                <li><a href="#cotizador">Precios</a></li>
+                <li><a href="#contacto" class="btn-nav">Cotizar Evento</a></li>
+            </ul>
+            <button class="nav-toggle" id="nav-toggle-btn"><i class="ti ti-menu-2"></i></button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="hero-bg-glow"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <span class="badge-tag"><i class="ti ti-sparkles"></i> Servicio Llave en Mano</span>
+                <h1>El acceso a tu evento. <br><span>Sin filas ni complicaciones.</span></h1>
+                <p>Nos encargamos de todo: generamos los códigos QR, enviamos las invitaciones por correo y te entregamos la aplicación de escaneo inteligente lista para usar. Vinculada a Excel y 100% offline.</p>
+                <div class="hero-ctas">
+                    <a href="#cotizador" class="btn btn-primary">Calcular Mi Evento <i class="ti ti-calculator"></i></a>
+                    <a href="#como-funciona" class="btn btn-secondary">Ver Cómo Funciona <i class="ti ti-arrow-right"></i></a>
+                </div>
+                <div class="hero-stats">
+                    <div>
+                        <strong>+50k</strong>
+                        <span>Accesos Registrados</span>
+                    </div>
+                    <div>
+                        <strong>100%</strong>
+                        <span>Funcionamiento Offline</span>
+                    </div>
+                    <div>
+                        <strong>0%</strong>
+                        <span>Filas de espera</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="glass-phone-mockup">
+                    <div class="phone-camera"></div>
+                    <div class="phone-screen">
+                        <div class="mock-header">
+                            <i class="ti ti-qrcode-scanner"></i> AccesoQR Check-In
+                        </div>
+                        <div class="mock-stats">
+                            <div class="m-stat">
+                                <span>350</span>
+                                <strong>Invitados</strong>
+                            </div>
+                            <div class="m-stat green">
+                                <span>182</span>
+                                <strong>Registrados</strong>
+                            </div>
+                        </div>
+                        <div class="mock-scanner">
+                            <div class="mock-laser"></div>
+                            <div class="mock-qr-target">
+                                <i class="ti ti-scan"></i>
+                            </div>
+                        </div>
+                        <div class="mock-toast-success">
+                            <i class="ti ti-circle-check"></i>
+                            <div>
+                                <h4>¡Acceso Autorizado!</h4>
+                                <p>Alejandra Lara - Mesa 4</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- How it works (Línea de tiempo) -->
+    <section class="section-container" id="como-funciona">
+        <div class="section-header">
+            <span class="section-subtitle">Proceso Simple</span>
+            <h2>Cómo Funciona el Servicio</h2>
+            <p>Nosotros hacemos el trabajo pesado para que tú te enfoques en disfrutar de tu evento.</p>
+        </div>
+
+        <div class="steps-timeline">
+            <!-- Paso 1 -->
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-icon"><i class="ti ti-file-upload"></i></div>
+                <h3>Envíanos tu Lista</h3>
+                <p>Nos envías tu lista de invitados en cualquier formato de Excel o texto. Solo requerimos nombres e invitados por pase.</p>
+            </div>
+            <!-- Paso 2 -->
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-icon"><i class="ti ti-mail-forward"></i></div>
+                <h3>Enviamos los QR</h3>
+                <p>Generamos los códigos QR personalizados y los enviamos automáticamente por correo a tus invitados con sus pases.</p>
+            </div>
+            <!-- Paso 3 -->
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <div class="step-icon"><i class="ti ti-device-mobile"></i></div>
+                <h3>Escanear en la Entrada</h3>
+                <p>Te entregamos el acceso a la App web. Abre el enlace en cualquier celular y comienza a escanear. Funciona sin internet.</p>
+            </div>
+            <!-- Paso 4 -->
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <div class="step-icon"><i class="ti ti-file-download"></i></div>
+                <h3>Recibe tu Reporte</h3>
+                <p>Al finalizar el evento, descargas el archivo Excel actualizado con las firmas de asistencia y las horas exactas de entrada.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios -->
+    <section class="section-container bg-dark-glow" id="beneficios">
+        <div class="section-header">
+            <span class="section-subtitle">Beneficios Exclusivos</span>
+            <h2>Por Qué Elegir Nuestro Servicio</h2>
+            <p>Diseñamos una solución robusta pensada en las necesidades reales del día del evento.</p>
+        </div>
+
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <i class="ti ti-wifi-off"></i>
+                <h3>Cero Dependencia de Internet</h3>
+                <p>La aplicación guarda en el caché del celular la base de datos de invitados. Puedes escanear en sótanos, jardines alejados o salones cerrados sin señal móvil.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="ti ti-volume"></i>
+                <h3>Alertas Auditivas Inteligentes</h3>
+                <p>La app emite un pitido agradable para registros correctos, dos para boletos duplicados y un zumbido de error para invitados no registrados. Agiliza el acceso.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="ti ti-lock"></i>
+                <h3>Privacidad Absoluta</h3>
+                <p>Tus bases de datos no se almacenan en servidores ajenos. Todo se lee y modifica de manera segura de manera local en el navegador web de tu celular.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="ti ti-palette"></i>
+                <h3>Diseño Personalizado</h3>
+                <p>Adaptamos la interfaz de la aplicación de escaneo con el logotipo y colores institucionales de tu empresa o evento social.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="ti ti-users"></i>
+                <h3>Múltiples Accesos</h3>
+                <p>¿Tienes varias puertas de entrada? Puedes cargar el sistema en múltiples celulares para escanear en paralelo de forma independiente.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="ti ti-report-analytics"></i>
+                <h3>Soporte Técnico Incluido</h3>
+                <p>Te acompañamos de forma remota antes y durante el evento para asegurar que todo el equipo funcione y tus archivos de Excel estén bien mapeados.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cotizador Interactivo -->
+    <section class="section-container" id="cotizador">
+        <div class="section-header">
+            <span class="section-subtitle">Opciones de Contratación</span>
+            <h2>Nuestros Planes y Precios</h2>
+            <p>Elige el plan ideal: contrata el servicio completo gestionado por nosotros, o adquiere la licencia PRO de la aplicación de por vida.</p>
+        </div>
+
+        <div class="pricing-pro-grid">
+            
+            <!-- Plan 1: Servicio por Evento (Calculadora Dinámica) -->
+            <div class="pricing-tier-card calculator-wrapper-pro">
+                <div class="tier-header">
+                    <span class="tier-badge">Por Evento</span>
+                    <h3>Servicio Gestionado</h3>
+                    <p>Nosotros hacemos todo el trabajo por ti antes y durante el evento.</p>
+                </div>
+                
+                <div class="calc-panel">
+                    <div class="form-group">
+                        <label for="invitados-range">Cantidad de Invitados: <span id="invitados-count">200</span></label>
+                        <input type="range" id="invitados-range" min="50" max="1000" step="50" value="200" class="slider">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="opt-email" checked>
+                            <span class="checkmark"></span>
+                            <div>
+                                <strong>Envío de QRs por Email</strong>
+                                <span>Envío automatizado a invitados.</span>
+                            </div>
+                        </label>
+
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="opt-branding">
+                            <span class="checkmark"></span>
+                            <div>
+                                <strong>Logo y Colores a la App</strong>
+                                <span>Personalización con tu marca.</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="price-panel-pro">
+                    <div class="price-display">
+                        <span class="currency">$</span>
+                        <span class="amount" id="total-price">1,200</span>
+                        <span class="period">MXN</span>
+                    </div>
+                    <ul class="price-details-list" id="price-details-list">
+                        <!-- Dinámico -->
+                    </ul>
+                    <a href="#contacto" class="btn btn-secondary btn-block" id="calc-cta-btn">Cotizar Servicio</a>
+                </div>
+            </div>
+
+            <!-- Plan 2: Compra de Licencia App PRO (Pago Único) -->
+            <div class="pricing-tier-card pro-license-card premium-border">
+                <div class="tier-header">
+                    <span class="tier-badge success">Instalable</span>
+                    <h3>Licencia de Software PRO</h3>
+                    <p>Adquiere la aplicación instalable en tus dispositivos y contrólala con tu clave de activación única.</p>
+                </div>
+
+                <div class="license-features">
+                    <div class="feature-item-pro">
+                        <i class="ti ti-key"></i>
+                        <div>
+                            <strong>Clave de Activación Única</strong>
+                            <span>Licencia controlada vinculada a tus dispositivos autorizados para evitar piratería.</span>
+                        </div>
+                    </div>
+                    <div class="feature-item-pro">
+                        <i class="ti ti-brand-windows"></i>
+                        <div>
+                            <strong>Instaladores Oficiales (.exe y .apk)</strong>
+                            <span>Programas listos para instalar directamente en computadoras Windows o celulares Android.</span>
+                        </div>
+                    </div>
+                    <div class="feature-item-pro">
+                        <i class="ti ti-infinity"></i>
+                        <div>
+                            <strong>Eventos e Invitados Ilimitados</strong>
+                            <span>Organiza y escanea el acceso de todos los eventos que desees sin cargos adicionales por invitado.</span>
+                        </div>
+                    </div>
+                    <div class="feature-item-pro">
+                        <i class="ti ti-palette"></i>
+                        <div>
+                            <strong>Branding e Identidad Incorporada</strong>
+                            <span>Accede a las herramientas integradas para cambiar logos y colores para tus clientes en cada evento.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="price-panel-pro">
+                    <div class="price-display">
+                        <span class="currency">$</span>
+                        <span class="amount">1,799</span>
+                        <span class="period">MXN</span>
+                    </div>
+                    <p class="license-payment-info">Software ejecutable de escritorio y móvil + 1 clave de activación permanente.</p>
+                    <a href="#contacto?plan=pro-license" class="btn btn-primary btn-block" id="buy-pro-cta-btn">Comprar Licencia PRO</a>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Contacto / Formulario de Cotización -->
+    <section class="section-container bg-dark-glow" id="contacto">
+        <div class="section-header">
+            <span class="section-subtitle">Comencemos Hoy</span>
+            <h2>Solicita tu Cotización Formal</h2>
+            <p>Cuéntanos un poco sobre tu evento y nos pondremos en contacto contigo en menos de 2 horas.</p>
+        </div>
+
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h3>¿Tienes dudas adicionales?</h3>
+                <p>Escríbenos directamente o agenda una videollamada de demostración gratuita donde te mostramos la app en funcionamiento real.</p>
+                
+                <div class="info-list">
+                    <div class="info-item">
+                        <i class="ti ti-mail"></i>
+                        <div>
+                            <h4>Correo de Ventas</h4>
+                            <p><a href="mailto:sdbernalg004@gmail.com" class="contact-link">sdbernalg004@gmail.com</a></p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="ti ti-brand-whatsapp"></i>
+                        <div>
+                            <h4>Soporte Inmediato (WhatsApp)</h4>
+                            <p><a href="https://wa.me/525586451740" target="_blank" class="contact-link">+52 5586451740</a></p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="ti ti-clock"></i>
+                        <div>
+                            <h4>Horario de Atención</h4>
+                            <p>Lunes a Sábado: 9:00 AM - 7:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form" id="leads-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="c-name">Tu Nombre</label>
+                        <input type="text" id="c-name" placeholder="Ej. Juan Pérez" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="c-email">Correo Electrónico</label>
+                        <input type="email" id="c-email" placeholder="ejemplo@correo.com" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="c-event-type">Tipo de Evento</label>
+                        <select id="c-event-type" required>
+                            <option value="">Selecciona una opción</option>
+                            <option value="Boda / Evento Social">Boda / Evento Social</option>
+                            <option value="Congreso / Corporativo">Congreso / Corporativo</option>
+                            <option value="Concierto / Festival">Concierto / Festival</option>
+                            <option value="Graduación">Graduación</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="c-guests">Invitados Estimados</label>
+                        <input type="number" id="c-guests" placeholder="Ej. 250" min="10" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="c-details">Mensaje o Requerimientos Especiales</label>
+                    <textarea id="c-details" rows="4" placeholder="Ej. Requiero que el correo de envío de QRs se mande desde nuestro correo corporativo y que la app lleve el logo de la empresa..."></textarea>
+                </div>
+
+                <!-- Hidden inputs to send calculated options -->
+                <input type="hidden" id="c-calc-price">
+                
+                <button type="submit" class="btn btn-primary btn-block">Enviar Solicitud de Cotización <i class="ti ti-send"></i></button>
+                <div class="form-status hidden" id="form-status">
+                    <i class="ti ti-circle-check-filled"></i> ¡Solicitud enviada! Nos comunicaremos contigo en breve.
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="#" class="nav-logo">
+                    <i class="ti ti-qrcode-scanner"></i> Acceso<span>QR</span>
+                </a>
+                <p>El control de acceso definitivo para eventos corporativos y sociales.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Enlaces</h4>
+                <ul>
+                    <li><a href="#como-funciona">Cómo Funciona</a></li>
+                    <li><a href="#beneficios">Beneficios</a></li>
+                    <li><a href="#cotizador">Precios</a></li>
+                </ul>
+            </div>
+            <div class="footer-legal">
+                <p>&copy; 2026 AccesoQR. Todos los derechos reservados. | Diseñado para máxima velocidad.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
