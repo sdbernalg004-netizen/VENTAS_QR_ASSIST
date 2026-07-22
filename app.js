@@ -142,7 +142,6 @@ function setupLeadsForm() {
         form.addEventListener("submit", (e) => {
             e.preventDefault();
             
-            // Mock API Submission (simulating emailing/saving lead)
             const name = document.getElementById("c-name").value;
             const email = document.getElementById("c-email").value;
             const eventType = document.getElementById("c-event-type").value;
@@ -150,19 +149,55 @@ function setupLeadsForm() {
             const details = document.getElementById("c-details").value;
             const price = document.getElementById("c-calc-price").value;
 
-            console.log("Nuevo lead de cotización recibido:", {
-                name, email, eventType, guests, details, price,
-                date: new Date().toISOString()
+            const submitBtn = form.querySelector("button[type='submit']");
+            const originalBtnText = submitBtn ? submitBtn.innerHTML : "Enviar";
+            
+            if (submitBtn) {
+                submitBtn.setAttribute("disabled", "true");
+                submitBtn.innerHTML = "Enviando cotización...";
+            }
+
+            // Enviar datos reales a tu correo gratis vía FormSubmit.co
+            fetch("https://formsubmit.co/ajax/sdbernalg004@gmail.com", {
+                method: "POST",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    Nombre: name,
+                    Email: email,
+                    Tipo_Evento: eventType,
+                    Invitados: guests,
+                    Detalles: details,
+                    Precio_Cotizado: price,
+                    _subject: `Nueva Cotización QR: ${name} (${eventType})`
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (submitBtn) {
+                    submitBtn.removeAttribute("disabled");
+                    submitBtn.innerHTML = originalBtnText;
+                }
+                
+                // Show success feedback
+                formStatus.classList.remove("hidden");
+                form.reset();
+
+                // Hide feedback after 6 seconds
+                setTimeout(() => {
+                    formStatus.classList.add("hidden");
+                }, 6000);
+            })
+            .catch(error => {
+                console.error("Error al enviar formulario:", error);
+                if (submitBtn) {
+                    submitBtn.removeAttribute("disabled");
+                    submitBtn.innerHTML = originalBtnText;
+                }
+                alert("Hubo un problema al enviar la cotización por correo. Por favor contáctanos directamente por WhatsApp.");
             });
-
-            // Show success feedback
-            formStatus.classList.remove("hidden");
-            form.reset();
-
-            // Hide feedback after 5 seconds
-            setTimeout(() => {
-                formStatus.classList.add("hidden");
-            }, 6000);
         });
     }
 
