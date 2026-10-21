@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AccesoQR - Control de Acceso Profesional para Eventos</title>
+    <title>AccesoQR PRO - Control de Acceso e Invitaciones QR para Eventos</title>
+    <meta name="description" content="Sistema profesional de check-in con códigos QR para bodas, graduaciones y eventos corporativos. Generador de Pases VIP, sincronización multipuerta y modo 100% offline.">
+    
+    <!-- OpenGraph / Vista Previa para WhatsApp y Redes Sociales -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sdbernalg004-netizen.github.io/VENTAS_QR_ASSIST/">
+    <meta property="og:title" content="AccesoQR PRO - El Acceso a tu Evento Sin Filas ni Complicaciones">
+    <meta property="og:description" content="Genera Pases VIP Digitales, escanea en múltiples puertas en tiempo real o 100% sin internet y obtén reportes ejecutivos al instante.">
+    <meta property="og:image" content="https://sdbernalg004-netizen.github.io/Asistencia-Fiestas-PRO/screenshot.png">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,8 +30,10 @@
             </a>
             <ul class="nav-menu">
                 <li><a href="#como-funciona">Cómo Funciona</a></li>
-                <li><a href="#beneficios">Beneficios</a></li>
+                <li><a href="#beneficios">Funciones PRO</a></li>
                 <li><a href="#cotizador">Precios</a></li>
+                <li><a href="#faq">Preguntas</a></li>
+                <li><a href="https://sdbernalg004-netizen.github.io/qr-event-attendance-trial/" target="_blank" style="color: #FBBF24; font-weight: 700;"><i class="ti ti-bolt"></i> Probar Demo</a></li>
                 <li><a href="#contacto" class="btn-nav">Cotizar Evento</a></li>
             </ul>
             <button class="nav-toggle" id="nav-toggle-btn"><i class="ti ti-menu-2"></i></button>
@@ -34,12 +45,14 @@
         <div class="hero-bg-glow"></div>
         <div class="hero-container">
             <div class="hero-content">
-                <span class="badge-tag"><i class="ti ti-sparkles"></i> Servicio Llave en Mano</span>
+                <span class="badge-tag"><i class="ti ti-sparkles"></i> Nuevo: Pases VIP Digitales + Voz Concierge + Sincro Multipuerta</span>
                 <h1>El acceso a tu evento. <br><span>Sin filas ni complicaciones.</span></h1>
-                <p>Nos encargamos de todo: generamos los códigos QR, enviamos las invitaciones por correo y te entregamos la aplicación de escaneo inteligente lista para usar. Vinculada a Excel y 100% offline.</p>
-                <div class="hero-ctas">
-                    <a href="#cotizador" class="btn btn-primary">Calcular Mi Evento <i class="ti ti-calculator"></i></a>
-                    <a href="#como-funciona" class="btn btn-secondary">Ver Cómo Funciona <i class="ti ti-arrow-right"></i></a>
+                <p>Genera Pases VIP con diseño para enviar por WhatsApp, escanea en múltiples puertas en tiempo real o 100% sin internet, recibe alertas por voz y descarga tu Reporte Ejecutivo en PDF y Excel.</p>
+                <div class="hero-ctas" style="flex-wrap: wrap;">
+                    <a href="#cotizador" class="btn btn-primary">Ver Planes y Precios <i class="ti ti-crown"></i></a>
+                    <a href="https://sdbernalg004-netizen.github.io/qr-event-attendance-trial/" target="_blank" class="btn btn-secondary" style="border-color: rgba(251, 191, 36, 0.4); color: #FBBF24;">
+                        <i class="ti ti-device-mobile-bolt"></i> Probar DEMO Gratis (15 Inv.)
+                    </a>
                 </div>
                 <div class="hero-stats">
                     <div>
@@ -142,34 +155,34 @@
 
         <div class="benefits-grid">
             <div class="benefit-card">
+                <i class="ti ti-ticket"></i>
+                <h3>Generador de Pases VIP con Diseño</h3>
+                <p>Crea automáticamente boletos digitales elegantes con el nombre del evento, nombre del invitado, mesa asignada, pases válidos y QR listos para enviar por WhatsApp en 1 clic o descargar en ZIP.</p>
+            </div>
+            <div class="benefit-card">
                 <i class="ti ti-wifi-off"></i>
-                <h3>Cero Dependencia de Internet</h3>
-                <p>La aplicación guarda en el caché del celular la base de datos de invitados. Puedes escanear en sótanos, jardines alejados o salones cerrados sin señal móvil.</p>
+                <h3>Sincro en Tiempo Real + 100% Offline</h3>
+                <p>Si tienes internet, todas las puertas se sincronizan al instante en la nube. Si estás en un jardín o salón sin señal, funciona 100% offline con auto-guardado contra recargas accidentales.</p>
             </div>
             <div class="benefit-card">
-                <i class="ti ti-volume"></i>
-                <h3>Alertas Auditivas Inteligentes</h3>
-                <p>La app emite un pitido agradable para registros correctos, dos para boletos duplicados y un zumbido de error para invitados no registrados. Agiliza el acceso.</p>
+                <i class="ti ti-crown"></i>
+                <h3>Voz Concierge y Fanfarria VIP</h3>
+                <p>Al escanear, la app da la bienvenida por voz mencionando el nombre del invitado y su mesa asignada. Además, distingue con alerta dorada y fanfarria a los invitados VIP.</p>
             </div>
             <div class="benefit-card">
-                <i class="ti ti-lock"></i>
-                <h3>Privacidad Absoluta</h3>
-                <p>Tus bases de datos no se almacenan en servidores ajenos. Todo se lee y modifica de manera segura de manera local en el navegador web de tu celular.</p>
+                <i class="ti ti-users-group"></i>
+                <h3>Check-In Parcial y Registro en Puerta</h3>
+                <p>¿Llegaron solo 2 personas de una familia de 5? Registra entradas parciales exactas. ¿Llegó un invitado de último minuto? Agrégalo con el botón "+ En Puerta" en segundos.</p>
             </div>
             <div class="benefit-card">
-                <i class="ti ti-palette"></i>
-                <h3>Diseño Personalizado</h3>
-                <p>Adaptamos la interfaz de la aplicación de escaneo con el logotipo y colores institucionales de tu empresa o evento social.</p>
+                <i class="ti ti-file-analytics"></i>
+                <h3>Reporte Ejecutivo PDF y Conteo de Sillas</h3>
+                <p>Visualiza tanto el total de invitaciones como el conteo exacto de personas/platillos reales, flujo de entrada por minuto, horario pico y porcentaje de ocupación por cada mesa.</p>
             </div>
             <div class="benefit-card">
-                <i class="ti ti-users"></i>
-                <h3>Múltiples Accesos</h3>
-                <p>¿Tienes varias puertas de entrada? Puedes cargar el sistema en múltiples celulares para escanear en paralelo de forma independiente.</p>
-            </div>
-            <div class="benefit-card">
-                <i class="ti ti-report-analytics"></i>
-                <h3>Soporte Técnico Incluido</h3>
-                <p>Te acompañamos de forma remota antes y durante el evento para asegurar que todo el equipo funcione y tus archivos de Excel estén bien mapeados.</p>
+                <i class="ti ti-sun-high"></i>
+                <h3>Modo Día, Linterna y Marca Propia</h3>
+                <p>Personaliza la app con tu logotipo y colores. Incluye Modo Día de alto contraste para eventos bajo el sol, control de linterna integrado e interfaz bilingüe (ES / EN).</p>
             </div>
         </div>
     </section>
@@ -184,34 +197,34 @@
 
         <div class="pricing-pro-grid">
             
-            <!-- Plan 1: Solo Escáner 300 -->
+            <!-- Plan 1: Eventos hasta 300 Invitados -->
             <div class="pricing-tier-card">
                 <div class="tier-header">
-                    <span class="tier-badge">Económico</span>
-                    <h3>Solo Escáner 300</h3>
-                    <p>Módulo de escaneo rápido de acceso sin generador de QRs.</p>
+                    <span class="tier-badge">Eventos Sociales</span>
+                    <h3>Plan 300 Invitados</h3>
+                    <p>Ideal para bodas íntimas, XV años, bautizos y reuniones privadas.</p>
                 </div>
 
                 <div class="license-features">
                     <div class="feature-item-pro">
                         <i class="ti ti-users"></i>
                         <div>
-                            <strong>Hasta 300 Invitados</strong>
-                            <span>Capacidad por evento cargado.</span>
+                            <strong>Hasta 300 Invitados por Evento</strong>
+                            <span>Conteo de grupos y personas/sillas reales.</span>
                         </div>
                     </div>
                     <div class="feature-item-pro">
                         <i class="ti ti-camera"></i>
                         <div>
-                            <strong>Escáner QR en Puerta</strong>
-                            <span>Lectura de códigos y Excel.</span>
+                            <strong>Escáner QR + Voz Concierge VIP</strong>
+                            <span>Entradas parciales, registro en puerta y Excel.</span>
                         </div>
                     </div>
                     <div class="feature-item-pro">
-                        <i class="ti ti-lock"></i>
+                        <i class="ti ti-file-analytics"></i>
                         <div>
-                            <strong>Solo Módulo Escáner</strong>
-                            <span>No incluye Generador de QRs.</span>
+                            <strong>Reporte Ejecutivo PDF + Modo Offline</strong>
+                            <span>Estadísticas por mesa y respaldo automático.</span>
                         </div>
                     </div>
                 </div>
@@ -220,45 +233,47 @@
                     <div class="price-display">
                         <span class="currency">$</span>
                         <span class="amount">499</span>
-                        <span class="period">MXN</span>
+                        <span class="period">MXN (Solo Escáner)</span>
                     </div>
-                    <a href="https://buy.stripe.com/5kQ5kD0qL8HP1wP0vD4sE05" class="btn btn-secondary btn-block">Comprar Solo Escáner ($499)</a>
-                    <div style="margin-top: 10px; text-align: center;">
-                        <a href="https://buy.stripe.com/3cI8wP5L50bj8Zh4LT4sE02" style="font-size: 0.8rem; color: var(--accent); text-decoration: underline;">
-                            ¿Quieres incluir Generador QR? Comprar por $799 MXN
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <a href="https://buy.stripe.com/5kQ5kD0qL8HP1wP0vD4sE05" target="_blank" class="btn btn-secondary btn-block">
+                            Comprar Solo Escáner — $499
+                        </a>
+                        <a href="https://buy.stripe.com/3cI8wP5L50bj8Zh4LT4sE02" target="_blank" class="btn btn-primary btn-block" style="font-size: 0.9rem; padding: 12px 16px;">
+                            <i class="ti ti-ticket"></i> Escáner + Generador QR — $799
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Plan 2: Solo Escáner 600 -->
+            <!-- Plan 2: Eventos hasta 600 Invitados -->
             <div class="pricing-tier-card">
                 <div class="tier-header">
-                    <span class="tier-badge">Mediano</span>
-                    <h3>Solo Escáner 600</h3>
-                    <p>Para eventos medianos que solo requieren control de puerta.</p>
+                    <span class="tier-badge">Más Popular</span>
+                    <h3>Plan 600 Invitados</h3>
+                    <p>Para bodas grandes, graduaciones y convenciones medianas.</p>
                 </div>
 
                 <div class="license-features">
                     <div class="feature-item-pro">
                         <i class="ti ti-users"></i>
                         <div>
-                            <strong>Hasta 600 Invitados</strong>
-                            <span>Capacidad por evento cargado.</span>
-                        </div>
-                    </div>
-                    <div class="feature-item-pro">
-                        <i class="ti ti-camera"></i>
-                        <div>
-                            <strong>Escáner QR en Puerta</strong>
-                            <span>Lectura de códigos y Excel.</span>
+                            <strong>Hasta 600 Invitados por Evento</strong>
+                            <span>Capacidad ampliada con sincronización en nube.</span>
                         </div>
                     </div>
                     <div class="feature-item-pro">
                         <i class="ti ti-palette"></i>
                         <div>
-                            <strong>Personalización Básica</strong>
-                            <span>Cambio de logos y colores.</span>
+                            <strong>Personalización de Marca (Logo y Color)</strong>
+                            <span>Adapta la app a la identidad visual del evento.</span>
+                        </div>
+                    </div>
+                    <div class="feature-item-pro">
+                        <i class="ti ti-git-merge"></i>
+                        <div>
+                            <strong>Fusión Multipuerta + Reporte Ejecutivo</strong>
+                            <span>Consolida asistencias y ocupación de mesas.</span>
                         </div>
                     </div>
                 </div>
@@ -267,12 +282,14 @@
                     <div class="price-display">
                         <span class="currency">$</span>
                         <span class="amount">899</span>
-                        <span class="period">MXN</span>
+                        <span class="period">MXN (Solo Escáner)</span>
                     </div>
-                    <a href="https://buy.stripe.com/6oUeVd8Xh5vD4J1dip4sE03" class="btn btn-secondary btn-block">Comprar Solo Escáner ($899)</a>
-                    <div style="margin-top: 10px; text-align: center;">
-                        <a href="https://buy.stripe.com/dRm5kDflFaPX0sL9294sE04" style="font-size: 0.8rem; color: var(--accent); text-decoration: underline;">
-                            ¿Quieres incluir Generador QR? Comprar por $1,299 MXN
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <a href="https://buy.stripe.com/6oUeVd8Xh5vD4J1dip4sE03" target="_blank" class="btn btn-secondary btn-block">
+                            Comprar Solo Escáner — $899
+                        </a>
+                        <a href="https://buy.stripe.com/dRm5kDflFaPX0sL9294sE04" target="_blank" class="btn btn-primary btn-block" style="font-size: 0.9rem; padding: 12px 16px;">
+                            <i class="ti ti-ticket"></i> Escáner + Generador QR — $1,299
                         </a>
                     </div>
                 </div>
@@ -281,31 +298,31 @@
             <!-- Plan 3: Licencia PRO Empresarial (Pago Único) -->
             <div class="pricing-tier-card pro-license-card premium-border">
                 <div class="tier-header">
-                    <span class="tier-badge success">Empresarial</span>
+                    <span class="tier-badge success">Wedding Planners & Agencias</span>
                     <h3>Licencia PRO Ilimitada</h3>
-                    <p>Para agencias de eventos, salones y producciones.</p>
+                    <p>Todo incluido sin límites para organizadores, salones y productoras.</p>
                 </div>
 
                 <div class="license-features">
                     <div class="feature-item-pro">
                         <i class="ti ti-infinity"></i>
                         <div>
-                            <strong>Invitados Ilimitados</strong>
-                            <span>Sin restricciones por evento.</span>
+                            <strong>Eventos e Invitados Ilimitados</strong>
+                            <span>Usa el sistema en todos tus eventos del año.</span>
                         </div>
                     </div>
                     <div class="feature-item-pro">
-                        <i class="ti ti-qrcode"></i>
+                        <i class="ti ti-ticket"></i>
                         <div>
-                            <strong>Escáner + Generador QR</strong>
-                            <span>Herramientas PRO incluidas.</span>
+                            <strong>Generador Masivo de Pases VIP (ZIP)</strong>
+                            <span>Boletos diseñados en alta resolución + WhatsApp.</span>
                         </div>
                     </div>
                     <div class="feature-item-pro">
                         <i class="ti ti-devices"></i>
                         <div>
-                            <strong>Sincro Real-Time (4 Celulares)</strong>
-                            <span>Escaneo simultáneo multipuerta.</span>
+                            <strong>4 Celulares Simultáneos Incluidos</strong>
+                            <span>Sincronización en tiempo real + Fusión Offline.</span>
                         </div>
                     </div>
                 </div>
@@ -316,11 +333,24 @@
                         <span class="amount">1,799</span>
                         <span class="period">MXN</span>
                     </div>
-                    <p class="license-payment-info">Software ejecutable + 1 clave de activación ilimitada.</p>
-                    <a href="https://buy.stripe.com/eVqaEX4H1gah3EXbah4sE00" class="btn btn-primary btn-block" id="buy-pro-cta-btn">Comprar Licencia PRO</a>
+                    <p class="license-payment-info">Pago único • Clave de activación PRO inmediata para 4 dispositivos.</p>
+                    <a href="https://buy.stripe.com/eVqaEX4H1gah3EXbah4sE00" target="_blank" class="btn btn-primary btn-block" id="buy-pro-cta-btn">
+                        <i class="ti ti-crown"></i> Comprar Licencia PRO — $1,799
+                    </a>
                 </div>
             </div>
             
+        </div>
+
+        <!-- Add-on Dispositivo Extra + Banner Probar Demo -->
+        <div class="addon-strip-box">
+            <div>
+                <strong><i class="ti ti-device-mobile-plus" style="color: var(--accent);"></i> ¿Necesitas conectar un celular adicional en otra puerta de acceso?</strong>
+                <p style="color: var(--text-secondary); font-size: 0.88rem; margin-top: 2px;">Amplía el límite de dispositivos de tu licencia activa en cualquier momento.</p>
+            </div>
+            <a href="https://buy.stripe.com/fZu00j8Xhe29fnFguB4sE06" target="_blank" class="btn btn-secondary" style="white-space: nowrap; border-color: var(--accent);">
+                Añadir 1 Celular Extra (+$299 MXN)
+            </a>
         </div>
 
         <!-- Banner Probar Demo -->
@@ -332,6 +362,34 @@
             <a href="https://sdbernalg004-netizen.github.io/qr-event-attendance-trial/" target="_blank" class="btn btn-secondary" style="white-space: nowrap;">
                 <i class="ti ti-external-link"></i> Probar DEMO Gratis
             </a>
+        </div>
+    </section>
+
+    <!-- Preguntas Frecuentes (FAQ) -->
+    <section class="section-container" id="faq">
+        <div class="section-header">
+            <span class="section-subtitle">Resolvemos tus Dudas</span>
+            <h2>Preguntas Frecuentes</h2>
+            <p>Todo lo que necesitas saber antes de activar AccesoQR en tu próximo evento.</p>
+        </div>
+
+        <div class="faq-grid">
+            <div class="faq-card">
+                <h4><i class="ti ti-key" style="color: var(--accent);"></i> ¿Cómo recibo mi clave de licencia después de pagar?</h4>
+                <p>En cuanto completas tu pago seguro con tarjeta vía Stripe, recibes tu clave de activación (`AQR-2026-XXXX`) y el enlace directo a la App PRO para desbloquear tus dispositivos al instante.</p>
+            </div>
+            <div class="faq-card">
+                <h4><i class="ti ti-device-mobile" style="color: var(--accent);"></i> ¿Funciona en iPhone, Android, Tablets y Laptops?</h4>
+                <p>Sí. Es una Aplicación Web Progresiva (PWA) de última generación. Abre en cualquier navegador (Safari o Chrome) y puedes instalarla en tu pantalla de inicio sin pasar por tiendas lentas.</p>
+            </div>
+            <div class="faq-card">
+                <h4><i class="ti ti-wifi-off" style="color: var(--accent);"></i> ¿Qué pasa si en el jardín o salón se va el internet?</h4>
+                <p>La app sigue escaneando al 100% sin internet y guarda automáticamente cada registro en la memoria interna del celular. Al terminar, puedes exportar tu Excel o usar la Fusión Multipuerta.</p>
+            </div>
+            <div class="faq-card">
+                <h4><i class="ti ti-brand-whatsapp" style="color: var(--success);"></i> ¿Puedo usar mis propias invitaciones o enviar pases por WhatsApp?</h4>
+                <p>¡Ambos! Puedes descargar nuestro ZIP con Pases VIP diseñados listos para enviar por WhatsApp desde la tabla de invitados, o bien colocar nuestros códigos QR dentro de tu propio diseño de invitación.</p>
+            </div>
         </div>
     </section>
 
@@ -376,31 +434,37 @@
             <form class="contact-form" id="leads-form">
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="c-name">Tu Nombre</label>
-                        <input type="text" id="c-name" placeholder="Ej. Juan Pérez" required>
+                        <label for="c-name">Tu Nombre *</label>
+                        <input type="text" id="c-name" placeholder="Ej. Alejandra Torres" required>
                     </div>
                     <div class="form-group">
-                        <label for="c-email">Correo Electrónico</label>
-                        <input type="email" id="c-email" placeholder="ejemplo@correo.com" required>
+                        <label for="c-phone">Tu WhatsApp / Teléfono *</label>
+                        <input type="tel" id="c-phone" placeholder="Ej. 55 1234 5678" required>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="c-event-type">Tipo de Evento</label>
+                        <label for="c-email">Correo Electrónico *</label>
+                        <input type="email" id="c-email" placeholder="ejemplo@correo.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="c-event-type">Tipo de Evento *</label>
                         <select id="c-event-type" required>
                             <option value="">Selecciona una opción</option>
                             <option value="Boda / Evento Social">Boda / Evento Social</option>
+                            <option value="Wedding Planner / Agencia">Wedding Planner / Agencia de Eventos</option>
                             <option value="Congreso / Corporativo">Congreso / Corporativo</option>
-                            <option value="Concierto / Festival">Concierto / Festival</option>
                             <option value="Graduación">Graduación</option>
+                            <option value="Concierto / Festival">Concierto / Festival</option>
                             <option value="Otro">Otro</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="c-guests">Invitados Estimados</label>
-                        <input type="number" id="c-guests" placeholder="Ej. 250" min="10" required>
-                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="c-guests">Invitados Estimados *</label>
+                    <input type="number" id="c-guests" placeholder="Ej. 250" min="10" required>
                 </div>
 
                 <div class="form-group">
@@ -441,6 +505,12 @@
             </div>
         </div>
     </footer>
+
+    <!-- Botón Flotante de WhatsApp Directo -->
+    <a href="https://wa.me/525586451740?text=Hola%2C%20vi%20la%20p%C3%A1gina%20de%20AccesoQR%20y%20me%20gustar%C3%ADa%20informaci%C3%B3n%20para%20mi%20evento." target="_blank" class="whatsapp-float-btn" title="Chatear por WhatsApp ahora">
+        <i class="ti ti-brand-whatsapp"></i>
+        <span>¿Dudas? WhatsApp Directo</span>
+    </a>
 
     <script src="app.js"></script>
 </body>

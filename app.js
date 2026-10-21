@@ -184,6 +184,7 @@ function setupLeadsForm() {
             
             // Obtener valores de los campos del formulario
             const name = document.getElementById("c-name").value;
+            const phone = document.getElementById("c-phone") ? document.getElementById("c-phone").value : "No especificado";
             const email = document.getElementById("c-email").value;
             const eventType = document.getElementById("c-event-type").value;
             const guests = document.getElementById("c-guests").value;
@@ -208,12 +209,13 @@ function setupLeadsForm() {
                 },
                 body: JSON.stringify({
                     Nombre: name,
+                    Telefono_WhatsApp: phone,
                     Email: email,
                     Tipo_Evento: eventType,
                     Invitados: guests,
                     Detalles: details,
                     Precio_Cotizado: price,
-                    _subject: `Nueva Cotización QR: ${name} (${eventType})`
+                    _subject: `Nueva Cotización QR: ${name} - Tel: ${phone} (${eventType})`
                 })
             })
             .then(response => response.json())

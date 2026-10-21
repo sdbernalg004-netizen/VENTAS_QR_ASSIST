@@ -1111,3 +1111,101 @@ body {
     color: var(--accent);
 }
 
+/* Add-on Strip Box (Celular Extra) */
+.addon-strip-box {
+    background: rgba(99, 102, 241, 0.08);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 16px;
+    padding: 1.25rem 2rem;
+    max-width: 900px;
+    margin: 0 auto 1.5rem auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* FAQ Grid */
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.faq-card {
+    background: var(--bg-card);
+    border: 1px solid var(--bg-card-border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    transition: var(--transition);
+}
+
+.faq-card:hover {
+    border-color: rgba(99, 102, 241, 0.4);
+    transform: translateY(-3px);
+}
+
+.faq-card h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.faq-card p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* Floating WhatsApp CTA */
+.whatsapp-float-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #25D366;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+    z-index: 9999;
+    transition: var(--transition);
+}
+
+.whatsapp-float-btn i {
+    font-size: 1.4rem;
+}
+
+.whatsapp-float-btn:hover {
+    background: #1EBE5D;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 14px 30px rgba(37, 211, 102, 0.55);
+}
+
+@media (max-width: 768px) {
+    .addon-strip-box {
+        flex-direction: column;
+        text-align: center;
+    }
+    .faq-grid {
+        grid-template-columns: 1fr;
+    }
+    .whatsapp-float-btn span {
+        display: none;
+    }
+    .whatsapp-float-btn {
+        padding: 14px;
+        border-radius: 50%;
+    }
+}
+
+
