@@ -1,20 +1,37 @@
-// JavaScript for Sales Landing Page - Interactive Features
+/**
+ * ============================================================================
+ * SITIO WEB DE VENTAS - LÓGICA INTERACTIVA (app.js)
+ * ============================================================================
+ * Este archivo gestiona la interactividad de la página de ventas:
+ * 1. Menú desplegable móvil (hamburguesa).
+ * 2. Cotizador dinámico en tiempo real (calcula precios según invitados y extras).
+ * 3. Envió automático de cotizaciones por correo electrónico vía FormSubmit.co.
+ * 4. Prellenado inteligente del formulario de contacto según el plan elegido.
+ */
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Inicializar los 3 módulos principales al cargar la página
     setupMobileNav();
     setupPriceCalculator();
     setupLeadsForm();
 });
 
-// Mobile Navbar Toggle
+/**
+ * ----------------------------------------------------------------------------
+ * 1. MENÚ NAVEGACIÓN MÓVIL (setupMobileNav)
+ * ----------------------------------------------------------------------------
+ * Abre y cierra el menú hamburguesa en pantallas pequeñas y cambia el icono.
+ */
 function setupMobileNav() {
     const toggleBtn = document.getElementById("nav-toggle-btn");
     const navMenu = document.querySelector(".nav-menu");
 
     if (toggleBtn && navMenu) {
+        // Evento al hacer clic en el botón de hamburguesa
         toggleBtn.addEventListener("click", () => {
             navMenu.classList.toggle("active");
             const icon = toggleBtn.querySelector("i");
+            // Alternar entre icono de hamburguesa (ti-menu-2) y tache (ti-x)
             if (navMenu.classList.contains("active")) {
                 icon.className = "ti ti-x";
             } else {
@@ -22,7 +39,7 @@ function setupMobileNav() {
             }
         });
 
-        // Close menu when clicking link
+        // Cerrar el menú automáticamente al hacer clic en cualquier enlace
         navMenu.querySelectorAll("a").forEach(link => {
             link.addEventListener("click", () => {
                 navMenu.classList.remove("active");
@@ -32,8 +49,15 @@ function setupMobileNav() {
     }
 }
 
-// Interactive Price Calculator
+/**
+ * ----------------------------------------------------------------------------
+ * 2. CALCULADORA DINÁMICA DE PRECIOS (setupPriceCalculator)
+ * ----------------------------------------------------------------------------
+ * Permite al usuario mover la barra de invitados y activar casillas de verificación.
+ * Calcula en tiempo real el costo total y genera el resumen desglosado.
+ */
 function setupPriceCalculator() {
+    // Referencias a los elementos del DOM (slider, casillas y pantallas de texto)
     const guestsRange = document.getElementById("invitados-range");
     const guestsCount = document.getElementById("invitados-count");
     const optEmail = document.getElementById("opt-email");
@@ -45,44 +69,50 @@ function setupPriceCalculator() {
     const calcCtaBtn = document.getElementById("calc-cta-btn");
     const hiddenPriceInput = document.getElementById("c-calc-price");
 
+    // Si el cotizador no existe en la página actual, salir de la función
     if (!guestsRange) return;
 
-    // Trigger calculation on input change
+    // Escuchar cambios en el slider y casillas para recalcular inmediatamente
     guestsRange.addEventListener("input", calculatePrice);
     optEmail.addEventListener("change", calculatePrice);
     optBranding.addEventListener("change", calculatePrice);
     optMultidoor.addEventListener("change", calculatePrice);
 
-    // Initial calculation
+    // Ejecutar cálculo inicial al cargar
     calculatePrice();
 
+    /**
+     * Función interna de cálculo de precios
+     * MODIFICAR AQUÍ: Si deseas cambiar las tarifas o costos de los servicios.
+     */
     function calculatePrice() {
         const guests = parseInt(guestsRange.value);
         guestsCount.textContent = guests;
 
-        // Pricing Configuration (Precios Bajados)
+        // --- TARIFA BASE SEGÚN CANTIDAD DE INVITADOS ---
         let basePrice = 799; 
         
         if (guests <= 150) {
-            basePrice = 799;
+            basePrice = 799;  // Hasta 150 invitados
         } else if (guests <= 400) {
-            basePrice = 1299;
+            basePrice = 1299; // De 151 a 400 invitados
         } else {
-            basePrice = 1999;
+            basePrice = 1999; // Más de 400 invitados
         }
 
         let total = basePrice;
         const details = [];
 
-        // Base price detail
+        // Registro del servicio base en el desglose
         details.push({
             name: `Servicio base (${guests} invitados)`,
             price: basePrice
         });
 
-        // Add-on calculations
+        // --- CÁLCULO DE SERVICIOS ADICIONALES (EXTRAS) ---
+        
+        // Extra 1: Envío masivo por Email ($1.0 MXN por invitado)
         if (optEmail.checked) {
-            // $1.0 MXN extra per guest for bulk email delivery
             const emailPrice = Math.round(guests * 1.0);
             total += emailPrice;
             details.push({
@@ -91,6 +121,7 @@ function setupPriceCalculator() {
             });
         }
 
+        // Extra 2: Personalización con Logo ($200 MXN cuota fija)
         if (optBranding.checked) {
             const brandingPrice = 200;
             total += brandingPrice;
@@ -100,6 +131,7 @@ function setupPriceCalculator() {
             });
         }
 
+        // Extra 3: Sincronización Multipuerta ($300 MXN cuota fija)
         if (optMultidoor.checked) {
             const multidoorPrice = 300;
             total += multidoorPrice;
@@ -109,10 +141,11 @@ function setupPriceCalculator() {
             });
         }
 
-        // Render calculations
+        // Actualizar los textos y campos ocultos en la pantalla
         totalPriceDisplay.textContent = formatNumber(total);
         hiddenPriceInput.value = `$${total} MXN`;
 
+        // Renderizar la lista desglosada en HTML
         priceDetailsList.innerHTML = details.map(item => `
             <li>
                 <span>${item.name}</span>
@@ -120,28 +153,36 @@ function setupPriceCalculator() {
             </li>
         `).join('');
 
-        // Dynamic CTA link carrying price info to contact form
+        // Actualizar el enlace del botón de acción para enviar los datos al formulario #contacto
         calcCtaBtn.href = `#contacto?guests=${guests}&total=${total}&email=${optEmail.checked}&branding=${optBranding.checked}&multidoor=${optMultidoor.checked}`;
     }
 
+    // Auxiliar para formatear números con comas de miles (Ej: 1200 -> 1,200)
     function formatNumber(num) {
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 }
 
-// Leads Form Submission Handling
+/**
+ * ----------------------------------------------------------------------------
+ * 3. ENVÍO DE FORMULARIO DE COTIZACIÓN (setupLeadsForm)
+ * ----------------------------------------------------------------------------
+ * Procesa el envío del formulario usando FormSubmit.co para recibir los datos
+ * de los clientes en tu correo personal gratis y sin redirigir la página.
+ */
 function setupLeadsForm() {
     const form = document.getElementById("leads-form");
     const formStatus = document.getElementById("form-status");
     
-    // Parse URL hash parameters to prefill form if navigating from calculator CTA
+    // Escuchar cambios de URL (hashtags) para prellenar datos cuando el usuario da clic en un plan
     window.addEventListener("hashchange", prefillFormFromHash);
-    prefillFormFromHash(); // Initial check
+    prefillFormFromHash(); // Verificación al cargar la página
 
     if (form) {
         form.addEventListener("submit", (e) => {
-            e.preventDefault();
+            e.preventDefault(); // Evitar recarga tradicional de la página
             
+            // Obtener valores de los campos del formulario
             const name = document.getElementById("c-name").value;
             const email = document.getElementById("c-email").value;
             const eventType = document.getElementById("c-event-type").value;
@@ -149,6 +190,7 @@ function setupLeadsForm() {
             const details = document.getElementById("c-details").value;
             const price = document.getElementById("c-calc-price").value;
 
+            // Deshabilitar botón temporalmente y mostrar estado "Enviando..."
             const submitBtn = form.querySelector("button[type='submit']");
             const originalBtnText = submitBtn ? submitBtn.innerHTML : "Enviar";
             
@@ -157,7 +199,7 @@ function setupLeadsForm() {
                 submitBtn.innerHTML = "Enviando cotización...";
             }
 
-            // Enviar datos reales a tu correo gratis vía FormSubmit.co
+            // Petición AJAX transparente a FormSubmit.co dirigida a tu correo
             fetch("https://formsubmit.co/ajax/sdbernalg004@gmail.com", {
                 method: "POST",
                 headers: { 
@@ -176,16 +218,17 @@ function setupLeadsForm() {
             })
             .then(response => response.json())
             .then(data => {
+                // Restaurar botón
                 if (submitBtn) {
                     submitBtn.removeAttribute("disabled");
                     submitBtn.innerHTML = originalBtnText;
                 }
                 
-                // Show success feedback
+                // Mostrar mensaje flotante de confirmación de éxito
                 formStatus.classList.remove("hidden");
                 form.reset();
 
-                // Hide feedback after 6 seconds
+                // Ocultar mensaje de éxito tras 6 segundos
                 setTimeout(() => {
                     formStatus.classList.add("hidden");
                 }, 6000);
@@ -201,6 +244,13 @@ function setupLeadsForm() {
         });
     }
 
+    /**
+     * ------------------------------------------------------------------------
+     * PRELLENADO INTELIGENTE DEL FORMULARIO DE CONTACTO
+     * ------------------------------------------------------------------------
+     * Lee la URL cuando el usuario presiona un botón de "Cotizar" o "Comprar",
+     * extrayendo los parámetros y llenando los campos del formulario automáticamente.
+     */
     function prefillFormFromHash() {
         const hash = window.location.hash;
         if (hash && hash.includes("?")) {
@@ -212,8 +262,9 @@ function setupLeadsForm() {
             const priceInput = document.getElementById("c-calc-price");
             const eventTypeSelect = document.getElementById("c-event-type");
 
+            // Caso A: Si el usuario dio clic en "Comprar Licencia PRO"
             if (params.get("plan") === "pro-license") {
-                if (guestsInput) guestsInput.value = "9999"; // Representing unlimited
+                if (guestsInput) guestsInput.value = "9999";
                 if (priceInput) priceInput.value = "$1,799 MXN";
                 if (eventTypeSelect) eventTypeSelect.value = "Otro";
                 if (detailsTextarea) {
@@ -222,6 +273,7 @@ function setupLeadsForm() {
                 return;
             }
 
+            // Caso B: Si viene del cotizador interactivo
             if (params.has("guests") && guestsInput) {
                 guestsInput.value = params.get("guests");
             }
@@ -230,7 +282,7 @@ function setupLeadsForm() {
                 priceInput.value = `$${params.get("total")} MXN`;
             }
 
-            // Autofill details textarea with calculated summaries to help client
+            // Llenar cuadro de texto con la nota desglosada
             if (detailsTextarea) {
                 let note = "Pre-cotización calculada desde la web:\n";
                 note += `- Invitados: ${params.get("guests")}\n`;
