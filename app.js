@@ -10,9 +10,8 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Inicializar los 3 módulos principales al cargar la página
+    // Inicializar módulos activos de navegación y captación
     setupMobileNav();
-    setupPriceCalculator();
     setupLeadsForm();
 });
 
