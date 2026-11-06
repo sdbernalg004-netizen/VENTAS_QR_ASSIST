@@ -1557,13 +1557,17 @@ img {
     box-shadow: 0 14px 30px rgba(37, 211, 102, 0.5);
 }
 
+.nav-mobile-only {
+    display: none;
+}
+
 /* --------------------------------------------------------------------------
-   Responsive Layout (Mobile & Tablet)
+   Responsive & Adaptive Layout (Mobile, Tablet, Desktop)
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
     .hero-container {
         grid-template-columns: 1fr;
-        gap: 3.5rem;
+        gap: 3rem;
     }
 
     .hero-copy {
@@ -1583,7 +1587,7 @@ img {
     }
 
     .hero-guarantees {
-        max-width: 500px;
+        max-width: 540px;
         margin: 0 auto;
     }
 
@@ -1605,6 +1609,13 @@ img {
 }
 
 @media (max-width: 768px) {
+    .nav-mobile-only {
+        display: block;
+        border-top: 1px solid var(--border-light);
+        padding-top: 10px;
+        margin-top: 5px;
+    }
+
     .nav-menu {
         display: none;
         position: absolute;
@@ -1614,8 +1625,9 @@ img {
         background: var(--bg-surface);
         border-bottom: 1px solid var(--border-light);
         flex-direction: column;
-        padding: 1.5rem 2rem;
+        padding: 1.25rem 1.5rem;
         box-shadow: var(--shadow-card);
+        gap: 1.25rem;
     }
 
     .nav-menu.active {
@@ -1629,19 +1641,48 @@ img {
 
     .nav-toggle {
         display: block;
+        padding: 6px;
+    }
+
+    .hero-section {
+        padding: 7.5rem 1.25rem 3.5rem 1.25rem;
     }
 
     .hero-copy h1 {
-        font-size: 2.35rem;
+        font-size: clamp(2.15rem, 6.5vw, 2.75rem);
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
     }
 
     .hero-guarantees {
         grid-template-columns: 1fr;
         gap: 1rem;
+        text-align: left;
+    }
+
+    .section-container {
+        padding: 4.5rem 1.25rem;
     }
 
     .section-heading h2 {
-        font-size: 2rem;
+        font-size: clamp(1.85rem, 5.5vw, 2.25rem);
+    }
+
+    .destinations-strip {
+        padding: 1rem 1.25rem;
+    }
+
+    .strip-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
     }
 
     .whatsapp-card-float,
@@ -1651,12 +1692,45 @@ img {
         margin-top: 1rem;
     }
 
+    .comparison-card {
+        padding: 1.75rem 1.25rem;
+    }
+
+    .pricing-card {
+        padding: 2rem 1.25rem;
+    }
+
     .contact-box-editorial {
-        padding: 2rem 1.5rem;
+        padding: 2rem 1.25rem;
     }
 
     .form-group-row {
         grid-template-columns: 1fr;
+    }
+
+    .extra-addons-row .addon-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .extra-addons-row .btn {
+        width: 100%;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .footer-logo {
+        justify-content: center;
+    }
+
+    .footer-nav {
+        justify-content: center;
+        gap: 1rem;
     }
 
     .editorial-wa-float span {
@@ -1664,7 +1738,62 @@ img {
     }
 
     .editorial-wa-float {
-        padding: 14px;
+        padding: 15px;
         border-radius: 50%;
+        bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+        right: calc(18px + env(safe-area-inset-right, 0px));
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        padding: 6.5rem 1rem 3rem 1rem;
+    }
+
+    .hero-copy h1 {
+        font-size: 2rem;
+    }
+
+    .vip-ticket-card {
+        padding: 18px 14px;
+    }
+
+    .ticket-qr-frame {
+        width: 115px;
+        height: 115px;
+    }
+
+    .ticket-qr-frame i {
+        font-size: 5.5rem;
+    }
+
+    .guest-name {
+        font-size: 1.05rem;
+    }
+
+    .guest-meta-pills {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .city-pill {
+        font-size: 0.75rem;
+        padding: 4px 10px;
+    }
+
+    .flow-step {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .feat-box {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .faq-item {
+        padding: 1.25rem;
+    }
+
+    .price-amount-box .amount {
+        font-size: 2.75rem;
     }
 }
