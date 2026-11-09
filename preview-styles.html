@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variaciones Terracota de Autor — Sin Blanco y Sin Dorado | AccesoQR PRO</title>
+
+    <!-- Fuentes: Lora (Titulares de Autor) + Urbanist (Cuerpo Geométrico Moderno) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Urbanist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Iconos Tabler -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+    <style>
+        /* ====================================================================
+           SISTEMA DE SUB-VARIANTES TERRACOTA (CERO BLANCO, CERO DORADO)
+           ==================================================================== */
+        
+        /* 1. VARIANTE 3A: TERRACOTA & VERDE SALVIA SILVESTRE (Hacienda & Botánica) */
+        body.theme-terracotta-sage {
+            --bg-page: #EAE2D5;           /* Arena Cantera Tostada: visiblemente beige cálido, nada blanco */
+            --bg-surface: #F4EDE3;        /* Lino Pergamino Tostado para tarjetas */
+            --bg-subtle: #DECFC0;         /* Tono tierra intermedio */
+            --bg-dark: #1F2E25;           /* Verde bosque mineral oscuro */
+            --bg-dark-card: #283D31;      /* Superficie oscura */
+            --primary: #9C3820;           /* Terracota teja intensa */
+            --primary-hover: #832C17;
+            --accent: #3D5A49;            /* Verde Salvia Silvestre / Agave botánico (CERO DORADO) */
+            --accent-dark: #273D30;
+            --accent-tint: #E2EBE5;
+            --accent-border: #AFC6B8;
+            --brand-pill-bg: #E7DBD4;
+            --brand-pill-text: #8E3219;
+            --brand-pill-border: #D1B8AD;
+            --border: #D4C5B3;
+            --text-main: #1D1614;         /* Carbón cálido */
+            --text-muted: #594E48;
+            --text-inverse: #F8F4EC;
+            --font-title: 'Lora', Georgia, serif;
+            --font-body: 'Urbanist', sans-serif;
+            --shadow-card: 0 12px 30px -6px rgba(156, 56, 32, 0.09);
+            --shadow-ticket: 0 20px 40px -10px rgba(156, 56, 32, 0.18);
+        }
+
+        /* 2. VARIANTE 3B: TERRACOTA MONOCROMÁTICO & COBRE TOSTADO (Tierra Pura & Canela) */
+        body.theme-terracotta-copper {
+            --bg-page: #E5D8C7;           /* Lino Rústico / Adobe Tostado con presencia mineral */
+            --bg-surface: #EFE3D3;        /* Crema Barro Suave */
+            --bg-subtle: #D8C5B0;
+            --bg-dark: #231613;           /* Espresso quemado profundo */
+            --bg-dark-card: #32211C;
+            --primary: #8E3219;           /* Terracota profundo */
+            --primary-hover: #732611;
+            --accent: #B84D2F;            /* Cobre Rojizo Bruñido / Canela Tostada (CERO DORADO) */
+            --accent-dark: #6E220E;
+            --accent-tint: #F5DFD6;
+            --accent-border: #DBAE9F;
+            --brand-pill-bg: #EACDC4;
+            --brand-pill-text: #8E3219;
+            --brand-pill-border: #D5A394;
+            --border: #D1BFAB;
+            --text-main: #211613;
+            --text-muted: #5F4F48;
+            --text-inverse: #FAF3EC;
+            --font-title: 'Lora', Georgia, serif;
+            --font-body: 'Urbanist', sans-serif;
+            --shadow-card: 0 12px 30px -6px rgba(142, 50, 25, 0.1);
+            --shadow-ticket: 0 20px 40px -10px rgba(142, 50, 25, 0.22);
+        }
+
+        /* 3. VARIANTE 3C: TERRACOTA & ROSA CANTERA (Cantera de Oaxaca & Hospitalidad de Autor) */
+        body.theme-terracotta-quarry {
+            --bg-page: #E8DFD5;           /* Cantera Mineral Suave */
+            --bg-surface: #F3ECE4;        /* Algodón Crudo Tostado */
+            --bg-subtle: #D9CBBE;
+            --bg-dark: #2B1E1C;           /* Muro colonial nocturno */
+            --bg-dark-card: #3C2B28;
+            --primary: #9E3B24;           /* Terracota teja */
+            --primary-hover: #822E1A;
+            --accent: #A85A48;            /* Palo de Rosa Cantera / Arcilla Bruñida (CERO DORADO) */
+            --accent-dark: #6D2F22;
+            --accent-tint: #F3E0DB;
+            --accent-border: #D9ABA0;
+            --brand-pill-bg: #EAD9D5;
+            --brand-pill-text: #9E3B24;
+            --brand-pill-border: #D3B3AC;
+            --border: #D5C5B6;
+            --text-main: #1F1715;
+            --text-muted: #5E504A;
+            --text-inverse: #FAF4EE;
+            --font-title: 'Lora', Georgia, serif;
+            --font-body: 'Urbanist', sans-serif;
+            --shadow-card: 0 12px 30px -6px rgba(158, 59, 36, 0.09);
+            --shadow-ticket: 0 20px 40px -10px rgba(158, 59, 36, 0.18);
+        }
+
+        /* 4. VARIANTE 3D: TERRACOTA NOCTURNO & CARBÓN ARCILLA (Gala Inmersiva — 100% Sin Blanco) */
+        body.theme-terracotta-night {
+            --bg-page: #1A1412;           /* Fondo Carbón Espresso Noche (Cero Blanco) */
+            --bg-surface: #271E1C;        /* Tarjetas de arcilla oscura */
+            --bg-subtle: #362925;
+            --bg-dark: #120E0D;
+            --bg-dark-card: #1F1715;
+            --primary: #DE6443;           /* Terracota luminoso de noche */
+            --primary-hover: #C94E2D;
+            --accent: #BA6E5B;            /* Rosa cantera cálido nocturno (CERO DORADO) */
+            --accent-dark: #8E4939;
+            --accent-tint: #372824;
+            --accent-border: #5E413B;
+            --brand-pill-bg: #382622;
+            --brand-pill-text: #F18A70;
+            --brand-pill-border: #6B4239;
+            --border: #3D2F2A;
+            --text-main: #F5EDE6;         /* Texto Hueso Cálido sobre fondo oscuro */
+            --text-muted: #A89890;
+            --text-inverse: #1A1412;
+            --font-title: 'Lora', Georgia, serif;
+            --font-body: 'Urbanist', sans-serif;
+            --shadow-card: 0 14px 35px -8px rgba(0, 0, 0, 0.45);
+            --shadow-ticket: 0 20px 45px -10px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Base Resets */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            padding-bottom: 5rem;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-title);
+            letter-spacing: -0.015em;
+            line-height: 1.25;
+        }
+
+        h1 em, h2 em {
+            font-style: italic;
+            color: var(--primary);
+            text-decoration: underline;
+            text-decoration-color: var(--accent);
+            text-underline-offset: 6px;
+            text-decoration-thickness: 3px;
+        }
+
+        /* BARRA SUPERIOR FIJA DE CONTROL INTERACTIVO */
+        .preview-sticky-bar {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10000;
+            background: #191311;
+            color: #FFFFFF;
+            padding: 12px 20px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+            border-bottom: 2px solid #332420;
+        }
+
+        .bar-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .bar-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: #F3ECE6;
+        }
+
+        .bar-title i {
+            color: #DE6443;
+            font-size: 1.3rem;
+        }
+
+        .theme-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .theme-btn {
+            background: #281D1A;
+            color: #D6C8C1;
+            border: 1px solid #45312C;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-family: 'Urbanist', -apple-system, sans-serif;
+            font-size: 0.84rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .theme-btn:hover {
+            background: #3A2A26;
+            color: #FFFFFF;
+        }
+
+        .theme-btn.active {
+            background: #DE6443;
+            color: #FFFFFF;
+            border-color: #DE6443;
+            box-shadow: 0 0 15px rgba(222, 100, 67, 0.45);
+        }
+
+        .theme-btn .color-indicator {
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        /* Banner de Información del Estilo Activo */
+        .style-descriptor-banner {
+            max-width: 1240px;
+            margin: 2rem auto 1rem auto;
+            padding: 1.25rem 1.75rem;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-left: 6px solid var(--primary);
+            border-radius: 14px;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .descriptor-text h3 {
+            font-size: 1.35rem;
+            margin-bottom: 4px;
+            color: var(--primary);
+        }
+
+        .descriptor-text p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .descriptor-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .font-badge {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-main);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* SIMULACIÓN DEL HERO & COMPONENTES */
+        .preview-container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 1.5rem 1.5rem;
+        }
+
+        .hero-mockup-wrapper {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            gap: 3.5rem;
+            align-items: center;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 3.5rem;
+            box-shadow: var(--shadow-card);
+            margin-bottom: 2.5rem;
+        }
+
+        .badge-editorial {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--brand-pill-bg);
+            color: var(--brand-pill-text);
+            border: 1px solid var(--brand-pill-border);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.84rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-title {
+            font-size: 3.1rem;
+            margin-bottom: 1.25rem;
+            color: var(--text-main);
+        }
+
+        .hero-desc {
+            font-size: 1.12rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .btn-preview-group {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .btn-act {
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            border: 1px solid transparent;
+            font-family: var(--font-body);
+        }
+
+        .btn-primary-style {
+            background: var(--primary);
+            color: var(--text-inverse);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
+        }
+
+        .btn-primary-style:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn-accent-style {
+            background: var(--accent);
+            color: #FFFFFF;
+        }
+
+        .btn-outline-style {
+            background: var(--bg-surface);
+            color: var(--text-main);
+            border-color: var(--border);
+        }
+
+        /* TARJETA DE PASE VIP TÁCTIL */
+        .showcase-visual-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .vip-pass-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 26px 22px;
+            width: 100%;
+            max-width: 360px;
+            box-shadow: var(--shadow-ticket);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .pass-top-ribbon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 7px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .pass-label {
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: var(--accent-dark);
+            background: var(--accent-tint);
+            padding: 4px 12px;
+            border-radius: 4px;
+            border: 1px solid var(--accent-border);
+            display: inline-block;
+            margin-top: 6px;
+            margin-bottom: 12px;
+        }
+
+        .pass-title {
+            font-size: 1.35rem;
+            margin-bottom: 2px;
+            color: var(--text-main);
+        }
+
+        .pass-venue {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .pass-qr-box {
+            width: 145px;
+            height: 145px;
+            margin: 0 auto 16px auto;
+            background: #FFFFFF;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.04);
+        }
+
+        .pass-qr-box i {
+            font-size: 6.8rem;
+            color: #1A1412;
+        }
+
+        .pass-guest {
+            font-family: var(--font-title);
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 6px;
+            color: var(--text-main);
+        }
+
+        .pass-pills {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .pass-pill {
+            font-size: 0.76rem;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 6px;
+            background: var(--bg-subtle);
+            color: var(--text-main);
+        }
+
+        .pass-pill.vip {
+            background: var(--accent-tint);
+            color: var(--accent-dark);
+            border: 1px solid var(--accent-border);
+        }
+
+        /* SIMULADOR DE ESCÁNER DE LA HOSTESS EN CELULAR */
+        .dual-preview-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .preview-box {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.25rem;
+            box-shadow: var(--shadow-card);
+        }
+
+        .box-title {
+            font-size: 1.28rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-main);
+        }
+
+        /* Mockup Escáner Noche */
+        .scanner-mockup-night {
+            background: var(--bg-dark);
+            color: var(--text-inverse);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .scanner-header-night {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+            margin-bottom: 14px;
+        }
+
+        .scanner-door-pill {
+            font-size: 0.72rem;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 3px 10px;
+            border-radius: 20px;
+            color: #D4C5BC;
+        }
+
+        .scanner-success-card {
+            background: var(--bg-dark-card);
+            border: 1px solid var(--primary);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 12px;
+        }
+
+        .scanner-tag-confirmed {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            background: #1B4D34;
+            color: #A3E4C1;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 6px;
+        }
+
+        .scanner-name {
+            font-family: var(--font-title);
+            font-size: 1.25rem;
+            margin-bottom: 4px;
+            color: #FFFFFF;
+        }
+
+        .scanner-table-info {
+            font-size: 0.88rem;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Mockup Escáner Día */
+        .scanner-mockup-day {
+            background: var(--bg-page);
+            color: var(--text-main);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-card);
+        }
+
+        .scanner-header-day {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+            margin-bottom: 14px;
+        }
+
+        .scanner-day-card {
+            background: var(--bg-surface);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 14px;
+        }
+
+        /* TARJETAS DE PLANES & PRECIOS */
+        .pricing-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .price-card-demo {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 2.25rem 1.75rem;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .price-card-demo.featured {
+            border: 2px solid var(--primary);
+            position: relative;
+        }
+
+        .price-card-demo.pro-dark {
+            background: var(--bg-dark);
+            color: var(--text-inverse);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .price-card-demo.pro-dark h4 {
+            color: #FFFFFF;
+        }
+
+        .price-card-demo.pro-dark p {
+            color: #A89890;
+        }
+
+        .price-card-demo h4 {
+            font-size: 1.4rem;
+            margin-bottom: 4px;
+            color: var(--text-main);
+        }
+
+        .price-val {
+            font-family: var(--font-title);
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin: 1.25rem 0;
+            color: var(--primary);
+        }
+
+        .price-card-demo.pro-dark .price-val {
+            color: var(--primary);
+        }
+
+        @media (max-width: 900px) {
+            .hero-mockup-wrapper {
+                grid-template-columns: 1fr;
+                padding: 2rem 1.5rem;
+                gap: 2rem;
+            }
+            .dual-preview-row, .pricing-preview-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-title {
+                font-size: 2.3rem;
+            }
+        }
+    </style>
+</head>
+<body class="theme-terracotta-sage">
+
+    <!-- BARRA SUPERIOR FIJA DE CONTROL -->
+    <div class="preview-sticky-bar">
+        <div class="bar-inner">
+            <div class="bar-title">
+                <i class="ti ti-palette"></i> 
+                <span>Estilo 3 Personalizado: <strong>Terracota de Autor (Sin Blanco y Sin Dorado)</strong></span>
+            </div>
+
+            <div class="theme-buttons">
+                <!-- Variante 3A -->
+                <button class="theme-btn active" id="btn-theme-sage" onclick="setTheme('theme-terracotta-sage')">
+                    <span class="color-indicator" style="background: #EAE2D5; border-color: #3D5A49;"></span>
+                    3A: Terracota & Salvia Silvestre
+                </button>
+                
+                <!-- Variante 3B -->
+                <button class="theme-btn" id="btn-theme-copper" onclick="setTheme('theme-terracotta-copper')">
+                    <span class="color-indicator" style="background: #E5D8C7; border-color: #B84D2F;"></span>
+                    3B: Monocromático & Cobre Tostado
+                </button>
+
+                <!-- Variante 3C -->
+                <button class="theme-btn" id="btn-theme-quarry" onclick="setTheme('theme-terracotta-quarry')">
+                    <span class="color-indicator" style="background: #E8DFD5; border-color: #A85A48;"></span>
+                    3C: Terracota & Rosa Cantera
+                </button>
+
+                <!-- Variante 3D -->
+                <button class="theme-btn" id="btn-theme-night" onclick="setTheme('theme-terracotta-night')">
+                    <span class="color-indicator" style="background: #1A1412; border-color: #DE6443;"></span>
+                    3D: Gala Inmersiva Nocturna
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BANNER DESCRIPTIVO DINÁMICO -->
+    <div class="preview-container">
+        <div class="style-descriptor-banner">
+            <div class="descriptor-text">
+                <h3 id="style-name">Variante 3A: Terracota & Verde Salvia Silvestre</h3>
+                <p id="style-desc">Fondo Arena Cantera (#EAE2D5), tarjetas Lino Pergamino (#F4EDE3) y acento verde salvia botánico (#3D5A49). 100% libre de blanco y libre de dorado.</p>
+            </div>
+            <div class="descriptor-tags">
+                <span class="font-badge" id="style-font-heading"><i class="ti ti-typography"></i> Titulares: Lora (Serif de Autor)</span>
+                <span class="font-badge" id="style-font-body"><i class="ti ti-forms"></i> Lectura: Urbanist</span>
+                <span class="font-badge" id="style-bg-swatch" style="border: 2px solid var(--accent);"><i class="ti ti-color-swatch"></i> Fondo: Arena Cantera</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- VISTA PREVIA 1: SIMULACIÓN DEL HERO & PASE VIP -->
+    <div class="preview-container">
+        <div class="hero-mockup-wrapper">
+            <div class="hero-copy-column">
+                <div class="badge-editorial">
+                    <i class="ti ti-sparkles"></i> <span id="mock-badge">Hospitalidad de Autor para Wedding Planners & Salones</span>
+                </div>
+                <h1 class="hero-title">Recepción impecable para bodas y eventos <em>inolvidables.</em></h1>
+                <p class="hero-desc">
+                    Pases VIP digitales enviados directo al WhatsApp de tus invitados, asignación de mesa en 0.8 segundos y control de acceso que sigue funcionando aunque en la hacienda se vaya el internet.
+                </p>
+                <div class="btn-preview-group">
+                    <a href="#demo" class="btn-act btn-primary-style">
+                        Ver Planes y Licencias <i class="ti ti-arrow-right"></i>
+                    </a>
+                    <a href="#demo" class="btn-act btn-outline-style">
+                        <i class="ti ti-player-play-filled"></i> Probar Demo en Vivo
+                    </a>
+                </div>
+                <div style="font-size: 0.88rem; color: var(--text-muted); display: flex; gap: 18px; flex-wrap: wrap;">
+                    <span><i class="ti ti-check" style="color: var(--primary);"></i> 0.8s Lectura de QR</span>
+                    <span><i class="ti ti-check" style="color: var(--primary);"></i> 100% Offline en Jardines</span>
+                    <span><i class="ti ti-check" style="color: var(--primary);"></i> Cero descargas</span>
+                </div>
+            </div>
+
+            <!-- Columna Táctil: Pase VIP Digital Generado -->
+            <div class="showcase-visual-column">
+                <div class="vip-pass-card">
+                    <div class="pass-top-ribbon"></div>
+                    <span class="pass-label">PASE DE ACCESO VIP</span>
+                    <h4 class="pass-title">Boda Regina & Sebastián</h4>
+                    <p class="pass-venue">Hacienda San José • Cuernavaca, Mor.</p>
+
+                    <div class="pass-qr-box">
+                        <i class="ti ti-qrcode"></i>
+                    </div>
+
+                    <span class="pass-guest">Familia Morales Garza</span>
+                    <div class="pass-pills">
+                        <span class="pass-pill"><i class="ti ti-users"></i> 4 Pases</span>
+                        <span class="pass-pill vip"><i class="ti ti-armchair"></i> Mesa 08 (Terraza)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VISTA PREVIA 2: LA APP OPERATIVA (MODO NOCHE VS MODO DÍA) -->
+    <div class="preview-container">
+        <div class="dual-preview-row">
+            
+            <!-- Mockup Modo Noche en Celular -->
+            <div class="preview-box">
+                <h3 class="box-title"><i class="ti ti-moon-stars"></i> Así se verá la App de noche (Modo Gala)</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+                    Ergonomía nocturna: Evita encandilar a los invitados y reduce la fatiga visual de la hostess en salones oscuros.
+                </p>
+
+                <div class="scanner-mockup-night">
+                    <div class="scanner-header-night">
+                        <strong style="font-size: 0.9rem; color: #FFF;"><i class="ti ti-qrcode-scanner"></i> AccesoQR PRO</strong>
+                        <span class="scanner-door-pill"><i class="ti ti-door"></i> Puerta Principal</span>
+                    </div>
+
+                    <div class="scanner-success-card">
+                        <span class="scanner-tag-confirmed">✓ INGRESO REGISTRADO</span>
+                        <div class="scanner-name">Familia Morales Garza</div>
+                        <div class="scanner-table-info">Mesa 08 VIP • 4 / 4 asistieron</div>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; font-size: 0.74rem; color: #A89890;">
+                        <span><i class="ti ti-clock"></i> Hora: 20:45 hrs</span>
+                        <span><i class="ti ti-volume"></i> Voz Concierge Activa</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mockup Modo Día en Celular -->
+            <div class="preview-box">
+                <h3 class="box-title"><i class="ti ti-sun"></i> Así se verá la App de día (Modo Jardín / Sol)</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+                    Alto contraste orgánico: Legibilidad absoluta bajo la luz directa del sol en recepciones campestres al aire libre.
+                </p>
+
+                <div class="scanner-mockup-day">
+                    <div class="scanner-header-day">
+                        <strong style="font-size: 0.9rem;"><i class="ti ti-qrcode-scanner"></i> AccesoQR PRO</strong>
+                        <span style="font-size: 0.74rem; font-weight: 700; background: var(--bg-subtle); padding: 3px 10px; border-radius: 20px;">Puerta Jardín</span>
+                    </div>
+
+                    <div class="scanner-day-card">
+                        <span style="font-size: 0.72rem; font-weight: 800; color: #1B4D34; background: #DCFCE7; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 6px;">✓ INGRESO REGISTRADO</span>
+                        <div style="font-family: var(--font-title); font-size: 1.25rem; margin-bottom: 4px; color: var(--text-main);">Familia Morales Garza</div>
+                        <div style="font-size: 0.88rem; color: var(--accent); font-weight: 700;">Mesa 08 VIP • 4 / 4 asistieron</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- VISTA PREVIA 3: PLANES Y PRECIOS -->
+    <div class="preview-container">
+        <h3 style="font-size: 1.7rem; margin-bottom: 1.25rem; text-align: center; color: var(--text-main);">Así lucirán las tarjetas de precios:</h3>
+        <div class="pricing-preview-grid">
+            
+            <div class="price-card-demo">
+                <div>
+                    <span style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Sociales</span>
+                    <h4>Boda Íntima</h4>
+                    <p style="font-size: 0.88rem; color: var(--text-muted);">Hasta 300 invitados</p>
+                    <div class="price-val">$499 <span style="font-size: 0.9rem; color: var(--text-muted);">MXN</span></div>
+                </div>
+                <button class="btn-act btn-outline-style" style="width: 100%; justify-content: center; font-size: 0.88rem;">Comprar Solo Escáner</button>
+            </div>
+
+            <div class="price-card-demo featured">
+                <div>
+                    <span style="font-size: 0.78rem; font-weight: 800; color: var(--primary); text-transform: uppercase;">Más Contratado</span>
+                    <h4>Gran Boda o Gala</h4>
+                    <p style="font-size: 0.88rem; color: var(--text-muted);">Hasta 600 invitados + Multipuerta</p>
+                    <div class="price-val">$899 <span style="font-size: 0.9rem; color: var(--text-muted);">MXN</span></div>
+                </div>
+                <button class="btn-act btn-primary-style" style="width: 100%; justify-content: center; font-size: 0.88rem;">Comprar Paquete Completo</button>
+            </div>
+
+            <div class="price-card-demo pro-dark">
+                <div>
+                    <span style="font-size: 0.78rem; font-weight: 800; color: var(--accent); text-transform: uppercase;">Planners & Salones</span>
+                    <h4>Licencia PRO Ilimitada</h4>
+                    <p style="font-size: 0.88rem;">Eventos ilimitados todo el año</p>
+                    <div class="price-val">$1,799 <span style="font-size: 0.9rem; color: #D4C5BC;">MXN</span></div>
+                </div>
+                <button class="btn-act btn-accent-style" style="width: 100%; justify-content: center; font-size: 0.88rem;">Comprar Licencia PRO</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const stylesData = {
+            'theme-terracotta-sage': {
+                name: 'Variante 3A: Terracota & Verde Salvia Silvestre',
+                desc: 'Fondo Arena Cantera (#EAE2D5), tarjetas Lino Pergamino (#F4EDE3) y acento Verde Salvia Botánico (#3D5A49). Sin blanco genérico y sin rastro de dorado.',
+                bgText: 'Fondo: Arena Cantera Cálida',
+                badgeText: 'Hospitalidad de Autor para Wedding Planners & Salones'
+            },
+            'theme-terracotta-copper': {
+                name: 'Variante 3B: Terracota Puro & Canela / Cobre Tostado',
+                desc: 'Fondo Lino Rústico (#E5D8C7), tarjetas Barro Suave (#EFE3D3) y acento Cobre Bruñido (#B84D2F). Armonía 100% de arcilla y canela.',
+                bgText: 'Fondo: Lino Rústico Tostado',
+                badgeText: 'Arquitectura y Hospitalidad Contemporánea Mexicana'
+            },
+            'theme-terracotta-quarry': {
+                name: 'Variante 3C: Terracota & Rosa Cantera Mineral',
+                desc: 'Fondo Cantera Suave (#E8DFD5), tarjetas Algodón Crudo (#F3ECE4) y acento Rosa Cantera (#A85A48). Delicada, artesanal y señorial.',
+                bgText: 'Fondo: Cantera Mineral Suave',
+                badgeText: 'Bodas de Autor en Casonas & Haciendas Históricas'
+            },
+            'theme-terracotta-night': {
+                name: 'Variante 3D: Gala Inmersiva Nocturna (100% Sin Blanco)',
+                desc: 'Fondo Carbón Espresso (#1A1412), tarjetas Arcilla Nocturna (#271E1C) y acento Rosa Cantera Cálido (#BA6E5B). Máxima sobriedad para eventos de noche.',
+                bgText: 'Fondo: Carbón Espresso Noche',
+                badgeText: 'Control VIP Inmersivo para Recepciones y Galas'
+            }
+        };
+
+        function setTheme(themeName) {
+            document.body.className = themeName;
+            
+            // Actualizar botones activos
+            document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+            if (themeName === 'theme-terracotta-sage') document.getElementById('btn-theme-sage').classList.add('active');
+            if (themeName === 'theme-terracotta-copper') document.getElementById('btn-theme-copper').classList.add('active');
+            if (themeName === 'theme-terracotta-quarry') document.getElementById('btn-theme-quarry').classList.add('active');
+            if (themeName === 'theme-terracotta-night') document.getElementById('btn-theme-night').classList.add('active');
+
+            // Actualizar banner descriptivo
+            const info = stylesData[themeName];
+            document.getElementById('style-name').textContent = info.name;
+            document.getElementById('style-desc').textContent = info.desc;
+            document.getElementById('style-bg-swatch').innerHTML = '<i class="ti ti-color-swatch"></i> ' + info.bgText;
+            document.getElementById('mock-badge').textContent = info.badgeText;
+        }
+    </script>
+</body>
+</html>

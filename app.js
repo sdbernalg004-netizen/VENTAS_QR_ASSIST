@@ -10,10 +10,57 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Inicializar módulos activos de navegación y captación
+    // Inicializar módulos activos de navegación, captación y animación fluida
+    setupSkeletonLoader();
     setupMobileNav();
     setupLeadsForm();
 });
+
+/**
+ * ----------------------------------------------------------------------------
+ * 0. SKELETON SCREEN LOADER FLUIDO (setupSkeletonLoader)
+ * ----------------------------------------------------------------------------
+ * Muestra la silueta de los componentes con efecto shimmer y luego los revela
+ * en sus lugares de forma coreografiada y fluida.
+ */
+function setupSkeletonLoader() {
+    const skeletonOverlay = document.getElementById("skeleton-overlay");
+    const replayBtn = document.getElementById("btn-replay-skeleton");
+    
+    function revealRealComponents() {
+        setTimeout(() => {
+            if (skeletonOverlay) {
+                skeletonOverlay.classList.add("hidden");
+            }
+            document.body.classList.remove("loading-state");
+            document.body.classList.add("page-loaded");
+        }, 700); // 700ms de animación inicial para apreciar el shimmer
+    }
+
+    if (document.readyState === "complete") {
+        revealRealComponents();
+    } else {
+        window.addEventListener("load", revealRealComponents);
+        // Fallback por seguridad
+        setTimeout(revealRealComponents, 1800);
+    }
+
+    // Botón para que el usuario o clientes puedan probar la animación cuantas veces quieran
+    if (replayBtn && skeletonOverlay) {
+        replayBtn.addEventListener("click", () => {
+            document.body.classList.remove("page-loaded");
+            document.body.classList.add("loading-state");
+            skeletonOverlay.classList.remove("hidden");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+
+            setTimeout(() => {
+                skeletonOverlay.classList.add("hidden");
+                document.body.classList.remove("loading-state");
+                document.body.classList.add("page-loaded");
+            }, 850);
+        });
+    }
+}
 
 /**
  * ----------------------------------------------------------------------------
