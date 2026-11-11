@@ -157,17 +157,19 @@ img {
 }
 
 .btn-nav-cta {
-    background: var(--text-primary);
+    background: var(--primary);
     color: #FFFFFF;
     padding: 9px 18px;
     font-size: 0.88rem;
     border-radius: var(--radius-sm);
+    box-shadow: 0 2px 10px rgba(222, 100, 67, 0.25);
 }
 
 .btn-nav-cta:hover {
-    background: var(--gold-primary);
+    background: var(--primary-hover);
     color: #FFFFFF;
     transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(222, 100, 67, 0.4);
 }
 
 .btn-card-gold {
@@ -465,15 +467,29 @@ img {
 
 /* Transiciones Fluidas de Entrada ("Staggered Reveal") */
 .reveal-on-load {
-    opacity: 0;
-    transform: translateY(22px);
+    opacity: 1;
+    transform: translateY(0);
     transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
 }
 
-body.page-loaded .reveal-on-load {
+.js .reveal-on-load {
+    opacity: 0;
+    transform: translateY(22px);
+}
+
+.js body.page-loaded .reveal-on-load {
     opacity: 1;
     transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal-on-load,
+    .js .reveal-on-load {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
 }
 
 .reveal-delay-1 {
@@ -521,8 +537,9 @@ body.page-loaded .reveal-on-load {
 .brand-monogram {
     width: 32px;
     height: 32px;
-    background: var(--text-primary);
-    color: var(--gold-primary);
+    background: var(--bg-surface);
+    color: var(--primary);
+    border: 1px solid var(--border-highlight);
     font-family: var(--font-heading);
     font-weight: 700;
     font-size: 0.9rem;
@@ -531,6 +548,7 @@ body.page-loaded .reveal-on-load {
     justify-content: center;
     border-radius: 6px;
     letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .brand-name {
@@ -1018,8 +1036,9 @@ body.page-loaded .reveal-on-load {
 
 .scanner-audio-pill {
     font-size: 0.65rem;
-    color: #93C5FD;
-    background: rgba(255, 255, 255, 0.08);
+    color: var(--primary);
+    background: rgba(222, 100, 67, 0.12);
+    border: 1px solid rgba(222, 100, 67, 0.25);
     padding: 4px 8px;
     border-radius: 4px;
     display: flex;
@@ -1381,10 +1400,11 @@ body.page-loaded .reveal-on-load {
 }
 
 .pro-card {
-    background: var(--bg-dark-obsidian);
+    background: linear-gradient(160deg, #1A1412 0%, #2A1A16 100%);
     color: #FFFFFF;
-    border: 1px solid rgba(222, 100, 67, 0.35);
-    box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.7), 0 0 35px -8px rgba(222, 100, 67, 0.22);
+    border: 2px solid var(--primary);
+    box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.8), 0 0 35px -8px rgba(222, 100, 67, 0.3);
+    position: relative;
 }
 
 .pro-card h3 {
@@ -1537,8 +1557,111 @@ body.page-loaded .reveal-on-load {
     margin-top: 2px;
 }
 
+.stripe-usd-note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    margin-top: 8px;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.stripe-usd-note i {
+    font-size: 0.88rem;
+    color: var(--primary);
+    flex-shrink: 0;
+}
+
 /* --------------------------------------------------------------------------
-   Testimonials
+   Garantía / Honest Proof Section
+   -------------------------------------------------------------------------- */
+.proof-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.proof-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-md);
+    padding: 2.25rem 2rem;
+    box-shadow: var(--shadow-subtle);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: var(--transition);
+}
+
+.proof-card:hover {
+    border-color: var(--gold-border);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card);
+}
+
+.proof-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(222, 100, 67, 0.12);
+    border: 1px solid var(--border-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 1.25rem;
+}
+
+.proof-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+}
+
+.proof-card p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+.proof-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.proof-link:hover {
+    color: var(--primary-hover);
+    transform: translateX(3px);
+}
+
+.proof-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(52, 211, 153, 0.12);
+    color: var(--emerald-accent);
+    border: 1px solid var(--emerald-border);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   Testimonials (Compatibilidad)
    -------------------------------------------------------------------------- */
 .testimonials-grid {
     display: grid;
@@ -1741,16 +1864,20 @@ body.page-loaded .reveal-on-load {
 }
 
 .btn-form-submit {
-    background: var(--text-primary);
+    background: var(--primary);
     color: #FFFFFF;
     width: 100%;
     padding: 13px;
     font-size: 0.95rem;
     margin-top: 0.5rem;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 4px 14px rgba(222, 100, 67, 0.3);
 }
 
 .btn-form-submit:hover {
-    background: var(--gold-primary);
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(222, 100, 67, 0.45);
 }
 
 .form-status {
@@ -1910,6 +2037,7 @@ body.page-loaded .reveal-on-load {
     .steps-flow,
     .features-editorial-grid,
     .pricing-cards-container,
+    .proof-grid,
     .testimonials-grid,
     .faq-accordion-grid,
     .contact-box-editorial,

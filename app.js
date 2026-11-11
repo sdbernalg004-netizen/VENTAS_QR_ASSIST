@@ -1,16 +1,15 @@
 /**
  * ============================================================================
- * SITIO WEB DE VENTAS - LÓGICA INTERACTIVA (app.js)
+ * ACCESOQR PRO — LÓGICA INTERACTIVA DEL SITIO WEB (app.js v7.0)
  * ============================================================================
- * Este archivo gestiona la interactividad de la página de ventas:
- * 1. Menú desplegable móvil (hamburguesa).
- * 2. Cotizador dinámico en tiempo real (calcula precios según invitados y extras).
- * 3. Envió automático de cotizaciones por correo electrónico vía FormSubmit.co.
- * 4. Prellenado inteligente del formulario de contacto según el plan elegido.
+ * Gestión de interactividad y hospitalidad digital:
+ * 1. Skeleton Screen Loader fluido sin lag artificial (espera a fuentes).
+ * 2. Menú de navegación móvil responsive con animación de icono.
+ * 3. Formulario de cotización y asesoría conectado a FormSubmit.co.
+ * 4. Prellenado inteligente del formulario según hash en URL.
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Inicializar módulos activos de navegación, captación y animación fluida
     setupSkeletonLoader();
     setupMobileNav();
     setupLeadsForm();
@@ -18,78 +17,67 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /**
  * ----------------------------------------------------------------------------
- * 0. SKELETON SCREEN LOADER FLUIDO (setupSkeletonLoader)
+ * 1. SKELETON SCREEN LOADER FLUIDO (setupSkeletonLoader)
  * ----------------------------------------------------------------------------
- * Muestra la silueta de los componentes con efecto shimmer y luego los revela
- * en sus lugares de forma coreografiada y fluida.
+ * Presenta la silueta de los componentes y los revela fluidamente al cargar
+ * las tipografías del sistema, garantizando cero parpadeos ni demoras artificiales.
  */
 function setupSkeletonLoader() {
     const skeletonOverlay = document.getElementById("skeleton-overlay");
-    const replayBtn = document.getElementById("btn-replay-skeleton");
-    
+    let revealed = false;
+
     function revealRealComponents() {
-        setTimeout(() => {
+        if (revealed) return;
+        revealed = true;
+
+        requestAnimationFrame(() => {
             if (skeletonOverlay) {
                 skeletonOverlay.classList.add("hidden");
             }
             document.body.classList.remove("loading-state");
             document.body.classList.add("page-loaded");
-        }, 700); // 700ms de animación inicial para apreciar el shimmer
+        });
+    }
+
+    // Si la API de fuentes está disponible, sincronizar con la carga tipográfica
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(revealRealComponents);
     }
 
     if (document.readyState === "complete") {
         revealRealComponents();
     } else {
         window.addEventListener("load", revealRealComponents);
-        // Fallback por seguridad
-        setTimeout(revealRealComponents, 1800);
-    }
-
-    // Botón para que el usuario o clientes puedan probar la animación cuantas veces quieran
-    if (replayBtn && skeletonOverlay) {
-        replayBtn.addEventListener("click", () => {
-            document.body.classList.remove("page-loaded");
-            document.body.classList.add("loading-state");
-            skeletonOverlay.classList.remove("hidden");
-            window.scrollTo({ top: 0, behavior: "smooth" });
-
-            setTimeout(() => {
-                skeletonOverlay.classList.add("hidden");
-                document.body.classList.remove("loading-state");
-                document.body.classList.add("page-loaded");
-            }, 850);
-        });
+        // Fallback de seguridad en caso de redes lentas
+        setTimeout(revealRealComponents, 1200);
     }
 }
 
 /**
  * ----------------------------------------------------------------------------
- * 1. MENÚ NAVEGACIÓN MÓVIL (setupMobileNav)
+ * 2. MENÚ DE NAVEGACIÓN MÓVIL (setupMobileNav)
  * ----------------------------------------------------------------------------
- * Abre y cierra el menú hamburguesa en pantallas pequeñas y cambia el icono.
+ * Abre y cierra el menú hamburguesa en dispositivos móviles y conmuta el icono.
  */
 function setupMobileNav() {
     const toggleBtn = document.getElementById("nav-toggle-btn");
     const navMenu = document.querySelector(".nav-menu");
 
     if (toggleBtn && navMenu) {
-        // Evento al hacer clic en el botón de hamburguesa
         toggleBtn.addEventListener("click", () => {
             navMenu.classList.toggle("active");
             const icon = toggleBtn.querySelector("i");
-            // Alternar entre icono de hamburguesa (ti-menu-2) y tache (ti-x)
-            if (navMenu.classList.contains("active")) {
-                icon.className = "ti ti-x";
-            } else {
-                icon.className = "ti ti-menu-2";
+            if (icon) {
+                icon.className = navMenu.classList.contains("active") ? "ti ti-x" : "ti ti-menu-2";
             }
         });
 
-        // Cerrar el menú automáticamente al hacer clic en cualquier enlace
+        // Cerrar menú automáticamente al hacer clic en un enlace de navegación
         navMenu.querySelectorAll("a").forEach(link => {
             link.addEventListener("click", () => {
                 navMenu.classList.remove("active");
-                toggleBtn.querySelector("i").className = "ti ti-menu-2";
+                const icon = toggleBtn.querySelector("i");
+                if (icon) icon.className = "ti ti-menu-2";
             });
         });
     }
@@ -97,159 +85,41 @@ function setupMobileNav() {
 
 /**
  * ----------------------------------------------------------------------------
- * 2. CALCULADORA DINÁMICA DE PRECIOS (setupPriceCalculator)
+ * 3. ENVÍO DE FORMULARIO DE COTIZACIÓN Y ASESORÍA (setupLeadsForm)
  * ----------------------------------------------------------------------------
- * Permite al usuario mover la barra de invitados y activar casillas de verificación.
- * Calcula en tiempo real el costo total y genera el resumen desglosado.
- */
-function setupPriceCalculator() {
-    // Referencias a los elementos del DOM (slider, casillas y pantallas de texto)
-    const guestsRange = document.getElementById("invitados-range");
-    const guestsCount = document.getElementById("invitados-count");
-    const optEmail = document.getElementById("opt-email");
-    const optBranding = document.getElementById("opt-branding");
-    const optMultidoor = document.getElementById("opt-multidoor");
-    
-    const totalPriceDisplay = document.getElementById("total-price");
-    const priceDetailsList = document.getElementById("price-details-list");
-    const calcCtaBtn = document.getElementById("calc-cta-btn");
-    const hiddenPriceInput = document.getElementById("c-calc-price");
-
-    // Si el cotizador no existe en la página actual, salir de la función
-    if (!guestsRange) return;
-
-    // Escuchar cambios en el slider y casillas para recalcular inmediatamente
-    guestsRange.addEventListener("input", calculatePrice);
-    optEmail.addEventListener("change", calculatePrice);
-    optBranding.addEventListener("change", calculatePrice);
-    optMultidoor.addEventListener("change", calculatePrice);
-
-    // Ejecutar cálculo inicial al cargar
-    calculatePrice();
-
-    /**
-     * Función interna de cálculo de precios
-     * MODIFICAR AQUÍ: Si deseas cambiar las tarifas o costos de los servicios.
-     */
-    function calculatePrice() {
-        const guests = parseInt(guestsRange.value);
-        guestsCount.textContent = guests;
-
-        // --- TARIFA BASE SEGÚN CANTIDAD DE INVITADOS ---
-        let basePrice = 799; 
-        
-        if (guests <= 150) {
-            basePrice = 799;  // Hasta 150 invitados
-        } else if (guests <= 400) {
-            basePrice = 1299; // De 151 a 400 invitados
-        } else {
-            basePrice = 1999; // Más de 400 invitados
-        }
-
-        let total = basePrice;
-        const details = [];
-
-        // Registro del servicio base en el desglose
-        details.push({
-            name: `Servicio base (${guests} invitados)`,
-            price: basePrice
-        });
-
-        // --- CÁLCULO DE SERVICIOS ADICIONALES (EXTRAS) ---
-        
-        // Extra 1: Envío masivo por Email ($1.0 MXN por invitado)
-        if (optEmail.checked) {
-            const emailPrice = Math.round(guests * 1.0);
-            total += emailPrice;
-            details.push({
-                name: "Envío masivo por Email",
-                price: emailPrice
-            });
-        }
-
-        // Extra 2: Personalización con Logo ($200 MXN cuota fija)
-        if (optBranding.checked) {
-            const brandingPrice = 200;
-            total += brandingPrice;
-            details.push({
-                name: "Personalización con tu Logo",
-                price: brandingPrice
-            });
-        }
-
-        // Extra 3: Sincronización Multipuerta ($300 MXN cuota fija)
-        if (optMultidoor.checked) {
-            const multidoorPrice = 300;
-            total += multidoorPrice;
-            details.push({
-                name: "Sincronización Multipuerta",
-                price: multidoorPrice
-            });
-        }
-
-        // Actualizar los textos y campos ocultos en la pantalla
-        totalPriceDisplay.textContent = formatNumber(total);
-        hiddenPriceInput.value = `$${total} MXN`;
-
-        // Renderizar la lista desglosada en HTML
-        priceDetailsList.innerHTML = details.map(item => `
-            <li>
-                <span>${item.name}</span>
-                <span>$${formatNumber(item.price)} MXN</span>
-            </li>
-        `).join('');
-
-        // Actualizar el enlace del botón de acción para enviar los datos al formulario #contacto
-        calcCtaBtn.href = `#contacto?guests=${guests}&total=${total}&email=${optEmail.checked}&branding=${optBranding.checked}&multidoor=${optMultidoor.checked}`;
-    }
-
-    // Auxiliar para formatear números con comas de miles (Ej: 1200 -> 1,200)
-    function formatNumber(num) {
-        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-}
-
-/**
- * ----------------------------------------------------------------------------
- * 3. ENVÍO DE FORMULARIO DE COTIZACIÓN (setupLeadsForm)
- * ----------------------------------------------------------------------------
- * Procesa el envío del formulario usando FormSubmit.co para recibir los datos
- * de los clientes en tu correo personal gratis y sin redirigir la página.
+ * Procesa el envío asíncrono hacia FormSubmit.co para recibir solicitudes de
+ * asesoría directamente en el correo oficial sin recargas de página.
  */
 function setupLeadsForm() {
     const form = document.getElementById("leads-form");
     const formStatus = document.getElementById("form-status");
-    
-    // Escuchar cambios de URL (hashtags) para prellenar datos cuando el usuario da clic en un plan
+
     window.addEventListener("hashchange", prefillFormFromHash);
-    prefillFormFromHash(); // Verificación al cargar la página
+    prefillFormFromHash();
 
     if (form) {
         form.addEventListener("submit", (e) => {
-            e.preventDefault(); // Evitar recarga tradicional de la página
-            
-            // Obtener valores de los campos del formulario
-            const name = document.getElementById("c-name").value;
-            const phone = document.getElementById("c-phone") ? document.getElementById("c-phone").value : "No especificado";
-            const email = document.getElementById("c-email").value;
-            const eventType = document.getElementById("c-event-type").value;
-            const guests = document.getElementById("c-guests").value;
-            const details = document.getElementById("c-details").value;
-            const price = document.getElementById("c-calc-price").value;
+            e.preventDefault();
 
-            // Deshabilitar botón temporalmente y mostrar estado "Enviando..."
+            const name = document.getElementById("c-name") ? document.getElementById("c-name").value : "";
+            const phone = document.getElementById("c-phone") ? document.getElementById("c-phone").value : "No especificado";
+            const email = document.getElementById("c-email") ? document.getElementById("c-email").value : "";
+            const eventType = document.getElementById("c-event-type") ? document.getElementById("c-event-type").value : "";
+            const guests = document.getElementById("c-guests") ? document.getElementById("c-guests").value : "";
+            const details = document.getElementById("c-details") ? document.getElementById("c-details").value : "";
+            const price = document.getElementById("c-calc-price") ? document.getElementById("c-calc-price").value : "";
+
             const submitBtn = form.querySelector("button[type='submit']");
             const originalBtnText = submitBtn ? submitBtn.innerHTML : "Enviar";
-            
+
             if (submitBtn) {
                 submitBtn.setAttribute("disabled", "true");
-                submitBtn.innerHTML = "Enviando cotización...";
+                submitBtn.innerHTML = 'Enviando consulta... <i class="ti ti-loader-2 ti-spin"></i>';
             }
 
-            // Petición AJAX transparente a FormSubmit.co dirigida a tu correo
             fetch("https://formsubmit.co/ajax/sdbernalg004@gmail.com", {
                 method: "POST",
-                headers: { 
+                headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
@@ -261,24 +131,23 @@ function setupLeadsForm() {
                     Invitados: guests,
                     Detalles: details,
                     Precio_Cotizado: price,
-                    _subject: `Nueva Cotización QR: ${name} - Tel: ${phone} (${eventType})`
+                    _subject: `Nueva Consulta AccesoQR: ${name} - Tel: ${phone} (${eventType})`
                 })
             })
             .then(response => response.json())
             .then(data => {
-                // Restaurar botón
                 if (submitBtn) {
                     submitBtn.removeAttribute("disabled");
                     submitBtn.innerHTML = originalBtnText;
                 }
-                
-                // Mostrar mensaje flotante de confirmación de éxito
-                formStatus.classList.remove("hidden");
+
+                if (formStatus) {
+                    formStatus.classList.remove("hidden");
+                }
                 form.reset();
 
-                // Ocultar mensaje de éxito tras 6 segundos
                 setTimeout(() => {
-                    formStatus.classList.add("hidden");
+                    if (formStatus) formStatus.classList.add("hidden");
                 }, 6000);
             })
             .catch(error => {
@@ -287,41 +156,35 @@ function setupLeadsForm() {
                     submitBtn.removeAttribute("disabled");
                     submitBtn.innerHTML = originalBtnText;
                 }
-                alert("Hubo un problema al enviar la cotización por correo. Por favor contáctanos directamente por WhatsApp.");
+                alert("Hubo un problema al enviar la consulta. Por favor contáctanos directamente por WhatsApp al +52 55 8645 1740.");
             });
         });
     }
 
     /**
-     * ------------------------------------------------------------------------
-     * PRELLENADO INTELIGENTE DEL FORMULARIO DE CONTACTO
-     * ------------------------------------------------------------------------
-     * Lee la URL cuando el usuario presiona un botón de "Cotizar" o "Comprar",
-     * extrayendo los parámetros y llenando los campos del formulario automáticamente.
+     * Prellenado inteligente del formulario según hash en la URL
      */
     function prefillFormFromHash() {
         const hash = window.location.hash;
         if (hash && hash.includes("?")) {
             const paramsStr = hash.split("?")[1];
             const params = new URLSearchParams(paramsStr);
-            
+
             const guestsInput = document.getElementById("c-guests");
             const detailsTextarea = document.getElementById("c-details");
             const priceInput = document.getElementById("c-calc-price");
             const eventTypeSelect = document.getElementById("c-event-type");
 
-            // Caso A: Si el usuario dio clic en "Comprar Licencia PRO"
             if (params.get("plan") === "pro-license") {
                 if (guestsInput) guestsInput.value = "9999";
                 if (priceInput) priceInput.value = "$1,799 MXN";
-                if (eventTypeSelect) eventTypeSelect.value = "Otro";
+                if (eventTypeSelect) eventTypeSelect.value = "Wedding Planner / Agencia";
                 if (detailsTextarea) {
-                    detailsTextarea.value = "Solicitud de Compra: Licencia de Software PRO\n- Requiero la aplicación instalable (.exe y .apk) y una clave de activación de por vida para el panel de branding, generador masivo y fusión multipuerta.";
+                    detailsTextarea.value = "Solicitud de Compra: Licencia PRO Ilimitada\n- Requiero activación de por vida para el panel de branding, generador de pases masivos y sincronización multipuerta.";
                 }
                 return;
             }
 
-            // Caso B: Si viene del cotizador interactivo
             if (params.has("guests") && guestsInput) {
                 guestsInput.value = params.get("guests");
             }
@@ -330,14 +193,10 @@ function setupLeadsForm() {
                 priceInput.value = `$${params.get("total")} MXN`;
             }
 
-            // Llenar cuadro de texto con la nota desglosada
-            if (detailsTextarea) {
-                let note = "Pre-cotización calculada desde la web:\n";
-                note += `- Invitados: ${params.get("guests")}\n`;
-                note += `- Presupuesto estimado: $${params.get("total")} MXN\n`;
-                note += `- Envío por email: ${params.get("email") === "true" ? "Sí" : "No"}\n`;
-                note += `- App personalizada: ${params.get("branding") === "true" ? "Sí" : "No"}\n`;
-                note += `- Múltiples accesos: ${params.get("multidoor") === "true" ? "Sí" : "No"}\n`;
+            if (detailsTextarea && params.has("guests")) {
+                let note = "Consulta generada desde la web:\n";
+                note += `- Invitados estimados: ${params.get("guests")}\n`;
+                if (params.has("total")) note += `- Presupuesto aproximado: $${params.get("total")} MXN\n`;
                 detailsTextarea.value = note;
             }
         }

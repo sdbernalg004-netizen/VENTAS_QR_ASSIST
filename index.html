@@ -18,9 +18,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Urbanist:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     
-    <!-- Iconos Tabler -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
-    <link rel="stylesheet" href="styles.css?v=6.0">
+    <!-- Meta tema móvil y detección de JS para evitar bloqueos visuales -->
+    <meta name="theme-color" content="#1A1412">
+    <script>document.documentElement.classList.add('js');</script>
+
+    <!-- Iconos Tabler versionados -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.28.0/dist/tabler-icons.min.css">
+    <link rel="stylesheet" href="styles.css?v=7.0">
 </head>
 <body class="loading-state">
 
@@ -87,14 +91,11 @@
                 <li><a href="#beneficios">Funciones</a></li>
                 <li><a href="#planes">Precios</a></li>
                 <li><a href="#faq">Preguntas</a></li>
-                <li class="nav-mobile-only"><a href="https://sdbernalg004-netizen.github.io/qr-event-attendance-trial/" target="_blank" style="color: var(--gold-primary); font-weight: 700;"><i class="ti ti-player-play-filled"></i> Probar Demo Gratis</a></li>
+                <li class="nav-mobile-only"><a href="https://sdbernalg004-netizen.github.io/qr-event-attendance-trial/" target="_blank" style="color: var(--primary); font-weight: 700;"><i class="ti ti-player-play-filled"></i> Probar Demo Gratis</a></li>
                 <li class="nav-mobile-only"><a href="https://wa.me/525586451740?text=Hola%20David%2C%20me%20gustar%C3%ADa%20una%20demostraci%C3%B3n%20de%20AccesoQR%20PRO%20para%20mis%20eventos." target="_blank" style="color: #25D366; font-weight: 700;"><i class="ti ti-brand-whatsapp"></i> Hablar con un Asesor</a></li>
             </ul>
 
             <div class="nav-actions">
-                <button id="btn-replay-skeleton" class="btn-replay-skeleton" title="Ver animación de siluetas de carga de nuevo">
-                    <i class="ti ti-sparkles"></i> Simular Carga
-                </button>
                 <a href="https://sdbernalg004-netizen.github.io/qr-event-attendance-trial/" target="_blank" class="nav-link-demo">
                     <i class="ti ti-player-play-filled"></i> Probar Demo
                 </a>
@@ -469,6 +470,7 @@
                     <a href="https://buy.stripe.com/3cI8wP5L50bj8Zh4LT4sE02" target="_blank" class="btn btn-card-gold">
                         <i class="ti ti-ticket"></i> Escáner + Generador VIP — $799 MXN
                     </a>
+                    <span class="stripe-usd-note"><i class="ti ti-info-circle"></i> Paquete procesado en USD (≈ US$44.83). Tu banco hace la conversión automática.</span>
                 </div>
             </div>
 
@@ -500,9 +502,11 @@
                     <a href="https://buy.stripe.com/6oUeVd8Xh5vD4J1dip4sE03" target="_blank" class="btn btn-card-outline">
                         Comprar Solo Escáner — $899 MXN
                     </a>
+                    <span class="stripe-usd-note"><i class="ti ti-info-circle"></i> Escáner procesado en USD (≈ US$50.44)</span>
                     <a href="https://buy.stripe.com/dRm5kDflFaPX0sL9294sE04" target="_blank" class="btn btn-card-gold">
                         <i class="ti ti-crown"></i> Escáner + Generador VIP — $1,299 MXN
                     </a>
+                    <span class="stripe-usd-note"><i class="ti ti-info-circle"></i> Paquete procesado en USD (≈ US$72.88)</span>
                 </div>
             </div>
 
@@ -534,6 +538,7 @@
                     <a href="https://buy.stripe.com/eVqaEX4H1gah3EXbah4sE00" target="_blank" class="btn btn-card-dark" id="buy-pro-cta-btn">
                         <i class="ti ti-key"></i> Comprar Licencia PRO — $1,799 MXN
                     </a>
+                    <span class="stripe-usd-note"><i class="ti ti-info-circle"></i> Procesado en USD (≈ US$100.93). Tu banco hace la conversión automática a pesos.</span>
                 </div>
             </div>
 
@@ -545,8 +550,8 @@
                 <div class="addon-info">
                     <i class="ti ti-device-mobile-plus"></i>
                     <div>
-                        <strong>¿Tienes más de 4 puertas o recepciones?</strong>
-                        <p>Añade un dispositivo celular extra a tu licencia activa por solo $299 MXN.</p>
+                        <strong>¿Tienes más de 4 puertas o celulares?</strong>
+                        <p>Añade un dispositivo celular extra a tu licencia activa por $299 MXN (≈ US$16.78).</p>
                     </div>
                 </div>
                 <a href="https://buy.stripe.com/fZu00j8Xhe29fnFguB4sE06" target="_blank" class="btn btn-sm-outline">
@@ -569,45 +574,38 @@
         </div>
     </section>
 
-    <!-- Testimonios de la Industria -->
-    <section class="section-container" id="testimonios">
+    <!-- Garantía y Honestidad Operativa -->
+    <section class="section-container" id="garantia">
         <div class="section-heading">
-            <span class="eyebrow">Experiencias Reales</span>
-            <h2>Lo que dicen quienes coordinan eventos cada fin de semana</h2>
+            <span class="eyebrow">Cero Riesgo • Transparencia Total</span>
+            <h2>Pruébalo antes de pagar, compruébalo en vivo</h2>
+            <p>Sin tarjetas bancarias ni registros para probar. Comprueba tú mismo que funcionará perfecto en tu evento.</p>
         </div>
 
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <div class="testi-stars">★★★★★</div>
-                <p class="testi-quote">
-                    "En Valle de Bravo siempre sufríamos porque en las haciendas no entra ni una llamada. Con AccesoQR el escáner leyó los 280 pases sin internet, y al día siguiente le entregué a los novios un PDF con las mesas exactas. Quedaron fascinados."
-                </p>
-                <div class="testi-author">
-                    <strong>Mariana Carvajal</strong>
-                    <span>Wedding Planner • Valle de Bravo & CDMX</span>
-                </div>
+        <div class="proof-grid">
+            <div class="proof-card">
+                <div class="proof-icon"><i class="ti ti-device-mobile-check"></i></div>
+                <h3>Demo 100% Funcional Gratis</h3>
+                <p>Prueba el escáner, la lectura de pases y la búsqueda de invitados con hasta 15 registros reales desde tu propio teléfono celular. Sin registros ni tarjetas.</p>
+                <a href="https://sdbernalg004-netizen.github.io/qr-event-attendance-trial/" target="_blank" class="proof-link">
+                    Abrir Demo Gratis <i class="ti ti-arrow-right"></i>
+                </a>
             </div>
 
-            <div class="testimonial-card">
-                <div class="testi-stars">★★★★★</div>
-                <p class="testi-quote">
-                    "Eliminamos por completo las filas en la entrada. Lo mejor es que cuando llega la familia, la hostess ve en pantalla la mesa asignada y les dice con amabilidad: 'Bienvenidos Familia Soto, su mesa es la 14'. El cambio es abismal."
-                </p>
-                <div class="testi-author">
-                    <strong>Héctor Villalobos</strong>
-                    <span>Coordinador de Eventos Sociales • CDMX</span>
-                </div>
+            <div class="proof-card">
+                <div class="proof-icon"><i class="ti ti-wifi-off"></i></div>
+                <h3>Arquitectura Offline Verificada</h3>
+                <p>Pon tu celular en Modo Avión y escanea: la lista se valida al instante sin internet. Tu evento está 100% blindado contra caídas de señal en haciendas y jardines.</p>
+                <span class="proof-badge"><i class="ti ti-shield-check"></i> Blindaje Anti-Caídas</span>
             </div>
 
-            <div class="testimonial-card">
-                <div class="testi-stars">★★★★★</div>
-                <p class="testi-quote">
-                    "Compramos la Licencia PRO de \$1,799 para el salón y se pagó sola en el primer evento. Ahora se la incluimos a todas nuestras parejas como cortesía tecnológica del recinto y es un valor agregado enorme."
-                </p>
-                <div class="testi-author">
-                    <strong>Sofía Morales</strong>
-                    <span>Gerente de Operaciones & Banquetes • Morelos</span>
-                </div>
+            <div class="proof-card">
+                <div class="proof-icon"><i class="ti ti-brand-whatsapp"></i></div>
+                <h3>Atención Directa del Desarrollador</h3>
+                <p>Habla directamente con David por WhatsApp antes de tu compra. Resolvemos cualquier duda técnica o logística para tu fecha especial.</p>
+                <a href="https://wa.me/525586451740?text=Hola%20David%2C%20tengo%20dudas%20antes%20de%20comprar%20AccesoQR." target="_blank" class="proof-link">
+                    Escribir por WhatsApp <i class="ti ti-arrow-right"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -633,7 +631,12 @@
 
             <div class="faq-item">
                 <h4><i class="ti ti-key"></i> ¿Cómo y cuándo recibo mi clave de activación tras pagar?</h4>
-                <p>De forma inmediata. En cuanto procesas tu pago seguro en Stripe, la pantalla te entrega tu clave de activación (<code>AQR-2026-XXXX</code>) y el enlace directo para desbloquear tus dispositivos en cuestión de segundos.</p>
+                <p>Tu clave personalizada (ej. <code>AQR-2026-XXXX</code>) te será entregada directamente por WhatsApp o correo electrónico en un lapso <strong>menor a 2 horas</strong> (horario de atención 9:00 a 21:00 hrs). Al finalizar tu pago en Stripe, serás redirigido a una página de confirmación con un enlace directo para notificarnos tu pago con un solo toque.</p>
+            </div>
+
+            <div class="faq-item">
+                <h4><i class="ti ti-credit-card"></i> ¿Por qué el cargo en Stripe aparece en dólares (USD)?</h4>
+                <p>Utilizamos la pasarela internacional de pagos Stripe para brindarte la máxima seguridad con cifrado bancario de 256 bits. Los precios están calculados para equivaler a los montos en pesos (MXN). Al pagar con cualquier tarjeta mexicana de débito o crédito (BBVA, Santander, Banorte, Nu, Mercado Pago, etc.), tu banco realiza la conversión automática a pesos.</p>
             </div>
 
             <div class="faq-item">
@@ -763,6 +766,6 @@
         <span>¿Dudas? WhatsApp Directo</span>
     </a>
 
-    <script src="app.js?v=6.0"></script>
+    <script src="app.js?v=7.0"></script>
 </body>
 </html>
